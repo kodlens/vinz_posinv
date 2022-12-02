@@ -47,7 +47,7 @@ class ItemController extends Controller
             'item_name' => ['required', 'unique:items']
         ]);
 
-        Item::create([
+        $item = Item::create([
             'barcode' => strtoupper($req->barcode),
             'serial' => strtoupper($req->serial),
             'brand' => strtoupper($req->brand),
@@ -57,7 +57,7 @@ class ItemController extends Controller
         ]);
 
         Inventory::create([
-            'item_id' => $req->item_id,
+            'item_id' => $item->item_id,
             'qty' => 0,
         ]);
 
