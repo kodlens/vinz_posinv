@@ -60,7 +60,10 @@ export default {
 
             axios.post('/login', this.fields).then(res=>{
             this.btnClass['is-loading'] = false;
-
+                
+                if(res.data.role === 'ADMINISTRATOR'){
+                    window.location = '/dashboard';
+                }
                 console.log(res.data)
                 window.location = '/dashboard';
             }).catch(err=>{
