@@ -102,16 +102,16 @@
                                 {{ props.row.price }}
                             </b-table-column>
 
-                            <b-table-column label="Action" v-slot="props">
+                            <!-- <b-table-column label="Action" v-slot="props">
                                 <div class="is-flex">
-<!--                                    <b-tooltip label="Edit" type="is-warning">-->
-<!--                                        <b-button class="button is-small is-warning mr-1" tag="a" icon-right="pencil" @click="edit(props.row.stock_in_id)"></b-button>-->
-<!--                                    </b-tooltip>-->
+                                   <b-tooltip label="Edit" type="is-warning">
+                                       <b-button class="button is-small is-warning mr-1" tag="a" icon-right="pencil" @click="edit(props.row.stock_in_id)"></b-button>
+                                    </b-tooltip>
                                     <b-tooltip label="Delete" type="is-danger">
                                         <b-button class="button is-small is-danger mr-1" icon-right="delete" @click="confirmDelete(props.row.stock_in_id)"></b-button>
                                     </b-tooltip>
                                 </div>
-                            </b-table-column>
+                            </b-table-column> -->
                         </b-table>
 
                         <div class="buttons mt-3">
@@ -221,56 +221,6 @@ export default{
 
 
 
-        submit: function(){
-            if(this.global_id > 0){
-                //update
-                axios.put('/items/'+this.global_id, this.fields).then(res=>{
-                    if(res.data.status === 'updated'){
-                        this.$buefy.dialog.alert({
-                            title: 'UPDATED!',
-                            message: 'Successfully updated.',
-                            type: 'is-success',
-                            onConfirm: () => {
-                                this.loadAsyncData();
-                                this.clearFields();
-                                this.global_id = 0;
-                                this.isModalCreate = false;
-                            }
-                        })
-                    }
-                }).catch(err=>{
-                    if(err.response.status === 422){
-                        this.errors = err.response.data.errors;
-                    }
-                })
-            }else{
-                //INSERT HERE
-                axios.post('/items', this.fields).then(res=>{
-                    if(res.data.status === 'saved'){
-                        this.$buefy.dialog.alert({
-                            title: 'SAVED!',
-                            message: 'Successfully saved.',
-                            type: 'is-success',
-                            confirmText: 'OK',
-                            onConfirm: () => {
-                                this.isModalCreate = false;
-                                this.loadAsyncData();
-                                this.clearFields();
-                                this.global_id = 0;
-                            }
-                        })
-                    }
-                }).catch(err=>{
-                    if(err.response.status === 422){
-                        this.errors = err.response.data.errors;
-                    }
-                });
-
-
-            }
-        },
-
-
         //alert box ask for deletion
         confirmDelete(delete_id) {
             this.$buefy.dialog.confirm({
@@ -284,7 +234,7 @@ export default{
         },
         //execute delete after confirming
         deleteSubmit(delete_id) {
-            axios.delete('/items/' + delete_id).then(res => {
+            axios.delete('/stock-in/' + delete_id).then(res => {
                 this.loadAsyncData();
             }).catch(err => {
                 if (err.response.status === 422) {
@@ -302,7 +252,7 @@ export default{
             };
         },
         edit: function(id){
-            window.location = '/stock-in/' + id + '/edit'
+            //window.location = '/stock-in/' + id + '/edit'
         }
 
 

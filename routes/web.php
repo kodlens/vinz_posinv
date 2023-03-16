@@ -16,11 +16,6 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
-
-
 
 Auth::routes([
     'login' => false,
@@ -29,7 +24,7 @@ Auth::routes([
     'verify' => false, // Email Verification Routes...
 ]);
 
-
+Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm']);
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
@@ -48,18 +43,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 /*     ADMINSITRATOR          */
-Route::resource('/dashboard', App\Http\Controllers\Administrator\DashboardController::class);
 
-Route::resource('/users', App\Http\Controllers\Administrator\UserController::class);
-Route::get('/get-users', [App\Http\Controllers\Administrator\UserController::class, 'getUsers']);
+Route::middleware(['auth'])->group(function() {
 
+    Route::resource('/dashboard', App\Http\Controllers\Administrator\DashboardController::class);
 
-Route::resource('/items', App\Http\Controllers\Administrator\ItemController::class);
-Route::get('/get-items', [App\Http\Controllers\Administrator\ItemController::class, 'getItems']);
-
-Route::resource('/stock-in', App\Http\Controllers\Administrator\StockInController::class);
-Route::get('/get-stock-ins', [App\Http\Controllers\Administrator\StockInController::class, 'getStockIns']);
-
+    Route::resource('/users', App\Http\Controllers\Administrator\UserController::class);
+    Route::get('/get-users', [App\Http\Controllers\Administrator\UserController::class, 'getUsers']);
+    
+    
+    Route::resource('/items', App\Http\Controllers\Administrator\ItemController::class);
+    Route::get('/get-items', [App\Http\Controllers\Administrator\ItemController::class, 'getItems']);
+    
+    Route::resource('/stock-in', App\Http\Controllers\Administrator\StockInController::class);
+    Route::get('/get-stock-ins', [App\Http\Controllers\Administrator\StockInController::class, 'getStockIns']);
+    
+    
+});
 
 
 

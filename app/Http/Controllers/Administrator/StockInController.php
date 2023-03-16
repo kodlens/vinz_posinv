@@ -71,6 +71,17 @@ class StockInController extends Controller
             'stock_in_date' => $stockDate
         ]);
 
+        $x = Inventory::where('item_id', $req->item_id)->exists();
+        if($x){
+            $inv = Inventory::where('item_id', $req->item_id)
+                ->increment('qty', $req->qty_in);
+        }else{
+            Inventory::create([
+                'item_id' => $req->item_id,
+                'qty' => $req->qty_in
+            ]);
+        }
+
 
         return response()->json([
             'status' => 'saved'
@@ -92,7 +103,6 @@ class StockInController extends Controller
         $data->qty_in = $req->qty_in;
         $data->price = $req->price;
         $data->stock_in_date = $stockDate;
-
         $data->save();
 
         return response()->json([
@@ -102,7 +112,7 @@ class StockInController extends Controller
 
 
     public function destroy($id){
-        Item::destroy($id);
+        StockIn::destroy($id);
 
         return response()->json([
             'status' => 'deleted'

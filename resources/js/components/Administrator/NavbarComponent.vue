@@ -25,12 +25,16 @@
 
                     <b-menu-list label="Menu">
 
-                        <b-menu-item icon="information-outline" label="Dashboard" tag="a" href="/dashboard-admin"></b-menu-item>
+                        <b-menu-item icon="information-outline" label="Dashboard" tag="a" href="/dashboard"></b-menu-item>
 
-                        <b-menu-item label="Items" icon="item" tag="a" href="/items"></b-menu-item>
-                        <b-menu-item label="Stock In" icon="item" tag="a" href="/stock-in"></b-menu-item>
+                        <b-menu-item label="Items" icon="shape-plus" tag="a" href="/items"></b-menu-item>
+
+                        <b-menu-item label="Stock In" icon="tag-plus-outline" tag="a" href="/stock-in"></b-menu-item>
+
+                        <b-menu-item label="Inventory" icon="folder-multiple-outline" tag="a" href="/inventory"></b-menu-item>
 
                         <b-menu-item label="User" icon="account" tag="a" href="/users"></b-menu-item>
+
 
                         <!-- <b-menu-item label="Franchise" icon="microsoft-office" tag="a" href="/franchise"></b-menu-item>
                         <b-menu-item label="QR Scanner" icon="qrcode-scan" tag="a" href="/qr-scanner"></b-menu-item> -->

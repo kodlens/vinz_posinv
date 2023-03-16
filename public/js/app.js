@@ -8108,6 +8108,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -8345,62 +8349,9 @@ __webpack_require__.r(__webpack_exports__);
       this.fields = {};
       this.errors = {};
     },
-    submit: function submit() {
-      var _this2 = this;
-
-      if (this.global_id > 0) {
-        //update
-        axios.put('/items/' + this.global_id, this.fields).then(function (res) {
-          if (res.data.status === 'updated') {
-            _this2.$buefy.dialog.alert({
-              title: 'UPDATED!',
-              message: 'Successfully updated.',
-              type: 'is-success',
-              onConfirm: function onConfirm() {
-                _this2.loadAsyncData();
-
-                _this2.clearFields();
-
-                _this2.global_id = 0;
-                _this2.isModalCreate = false;
-              }
-            });
-          }
-        })["catch"](function (err) {
-          if (err.response.status === 422) {
-            _this2.errors = err.response.data.errors;
-          }
-        });
-      } else {
-        //INSERT HERE
-        axios.post('/items', this.fields).then(function (res) {
-          if (res.data.status === 'saved') {
-            _this2.$buefy.dialog.alert({
-              title: 'SAVED!',
-              message: 'Successfully saved.',
-              type: 'is-success',
-              confirmText: 'OK',
-              onConfirm: function onConfirm() {
-                _this2.isModalCreate = false;
-
-                _this2.loadAsyncData();
-
-                _this2.clearFields();
-
-                _this2.global_id = 0;
-              }
-            });
-          }
-        })["catch"](function (err) {
-          if (err.response.status === 422) {
-            _this2.errors = err.response.data.errors;
-          }
-        });
-      }
-    },
     //alert box ask for deletion
     confirmDelete: function confirmDelete(delete_id) {
-      var _this3 = this;
+      var _this2 = this;
 
       this.$buefy.dialog.confirm({
         title: 'DELETE!',
@@ -8409,19 +8360,19 @@ __webpack_require__.r(__webpack_exports__);
         cancelText: 'Cancel',
         confirmText: 'Delete?',
         onConfirm: function onConfirm() {
-          return _this3.deleteSubmit(delete_id);
+          return _this2.deleteSubmit(delete_id);
         }
       });
     },
     //execute delete after confirming
     deleteSubmit: function deleteSubmit(delete_id) {
-      var _this4 = this;
+      var _this3 = this;
 
-      axios["delete"]('/items/' + delete_id).then(function (res) {
-        _this4.loadAsyncData();
+      axios["delete"]('/stock-in/' + delete_id).then(function (res) {
+        _this3.loadAsyncData();
       })["catch"](function (err) {
         if (err.response.status === 422) {
-          _this4.errors = err.response.data.errors;
+          _this3.errors = err.response.data.errors;
         }
       });
     },
@@ -8433,8 +8384,7 @@ __webpack_require__.r(__webpack_exports__);
         stock_in_date: new Date()
       };
     },
-    edit: function edit(id) {
-      window.location = '/stock-in/' + id + '/edit';
+    edit: function edit(id) {//window.location = '/stock-in/' + id + '/edit'
     }
   },
   mounted: function mounted() {
@@ -8455,6 +8405,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -30661,14 +30621,14 @@ var render = function () {
                           icon: "information-outline",
                           label: "Dashboard",
                           tag: "a",
-                          href: "/dashboard-admin",
+                          href: "/dashboard",
                         },
                       }),
                       _vm._v(" "),
                       _c("b-menu-item", {
                         attrs: {
                           label: "Items",
-                          icon: "item",
+                          icon: "shape-plus",
                           tag: "a",
                           href: "/items",
                         },
@@ -30677,9 +30637,18 @@ var render = function () {
                       _c("b-menu-item", {
                         attrs: {
                           label: "Stock In",
-                          icon: "item",
+                          icon: "tag-plus-outline",
                           tag: "a",
                           href: "/stock-in",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("b-menu-item", {
+                        attrs: {
+                          label: "Inventory",
+                          icon: "folder-multiple-outline",
+                          tag: "a",
+                          href: "/inventory",
                         },
                       }),
                       _vm._v(" "),
@@ -31086,9 +31055,9 @@ var render = function () {
                         fn: function (props) {
                           return [
                             _vm._v(
-                              "\n                                " +
+                              "\n                            " +
                                 _vm._s(props.row.stock_in_id) +
-                                "\n                            "
+                                "\n                        "
                             ),
                           ]
                         },
@@ -31104,9 +31073,9 @@ var render = function () {
                         fn: function (props) {
                           return [
                             _vm._v(
-                              "\n                                " +
+                              "\n                            " +
                                 _vm._s(props.row.stock_in_date) +
-                                "\n                            "
+                                "\n                        "
                             ),
                           ]
                         },
@@ -31122,9 +31091,9 @@ var render = function () {
                         fn: function (props) {
                           return [
                             _vm._v(
-                              "\n                                " +
+                              "\n                            " +
                                 _vm._s(props.row.item.item_name) +
-                                "\n                            "
+                                "\n                        "
                             ),
                           ]
                         },
@@ -31143,9 +31112,9 @@ var render = function () {
                         fn: function (props) {
                           return [
                             _vm._v(
-                              "\n                                " +
+                              "\n                            " +
                                 _vm._s(props.row.item.item_description) +
-                                "\n                            "
+                                "\n                        "
                             ),
                           ]
                         },
@@ -31161,9 +31130,9 @@ var render = function () {
                         fn: function (props) {
                           return [
                             _vm._v(
-                              "\n                                " +
+                              "\n                            " +
                                 _vm._s(props.row.qty_in) +
-                                "\n                            "
+                                "\n                        "
                             ),
                           ]
                         },
@@ -31179,53 +31148,9 @@ var render = function () {
                         fn: function (props) {
                           return [
                             _vm._v(
-                              "\n                                " +
+                              "\n                            " +
                                 _vm._s(props.row.price) +
-                                "\n                            "
-                            ),
-                          ]
-                        },
-                      },
-                    ]),
-                  }),
-                  _vm._v(" "),
-                  _c("b-table-column", {
-                    attrs: { label: "Action" },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "default",
-                        fn: function (props) {
-                          return [
-                            _c(
-                              "div",
-                              { staticClass: "is-flex" },
-                              [
-                                _c(
-                                  "b-tooltip",
-                                  {
-                                    attrs: {
-                                      label: "Delete",
-                                      type: "is-danger",
-                                    },
-                                  },
-                                  [
-                                    _c("b-button", {
-                                      staticClass:
-                                        "button is-small is-danger mr-1",
-                                      attrs: { "icon-right": "delete" },
-                                      on: {
-                                        click: function ($event) {
-                                          return _vm.confirmDelete(
-                                            props.row.stock_in_id
-                                          )
-                                        },
-                                      },
-                                    }),
-                                  ],
-                                  1
-                                ),
-                              ],
-                              1
+                                "\n                        "
                             ),
                           ]
                         },
@@ -31313,70 +31238,7 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "b-field",
-                    { attrs: { label: "Browse Item" } },
-                    [
-                      _c("modal-browse-item", {
-                        attrs: { "prop-item": _vm.itemName },
-                        on: {
-                          browseItem: function ($event) {
-                            return _vm.emitBrowseItem($event)
-                          },
-                        },
-                      }),
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-field",
-                    { attrs: { label: "Quantity" } },
-                    [
-                      _c("b-numberinput", {
-                        attrs: {
-                          "controls-alignment": "right",
-                          min: "0",
-                          placeholder: "Quantity",
-                          "controls-position": "compact",
-                        },
-                        model: {
-                          value: _vm.fields.qty_in,
-                          callback: function ($$v) {
-                            _vm.$set(_vm.fields, "qty_in", $$v)
-                          },
-                          expression: "fields.qty_in",
-                        },
-                      }),
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-field",
-                    { attrs: { label: "Price Each" } },
-                    [
-                      _c("b-numberinput", {
-                        attrs: {
-                          "controls-position": "compact",
-                          "controls-alignment": "right",
-                          min: "0",
-                          placeholder: "Price Each",
-                          step: "0.01",
-                        },
-                        model: {
-                          value: _vm.fields.price,
-                          callback: function ($$v) {
-                            _vm.$set(_vm.fields, "price", $$v)
-                          },
-                          expression: "fields.price",
-                        },
-                      }),
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-field",
-                    { attrs: { label: "Price Each" } },
+                    { attrs: { label: "Stock In Date" } },
                     [
                       _c("b-datepicker", {
                         attrs: { placeholder: "Stock In Date" },
@@ -31391,6 +31253,89 @@ var render = function () {
                     ],
                     1
                   ),
+                  _vm._v(" "),
+                  _c(
+                    "b-field",
+                    { attrs: { label: "Browse Item" } },
+                    [
+                      _c("modal-browse-item", {
+                        attrs: { "prop-item": _vm.itemName },
+                        on: {
+                          browseItem: function ($event) {
+                            return _vm.emitBrowseItem($event)
+                          },
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "columns" }, [
+                    _c(
+                      "div",
+                      { staticClass: "column" },
+                      [
+                        _c(
+                          "b-field",
+                          { attrs: { label: "Quantity" } },
+                          [
+                            _c("b-numberinput", {
+                              attrs: {
+                                "controls-alignment": "right",
+                                min: "0",
+                                controls: false,
+                                expanded: "",
+                                placeholder: "Quantity",
+                                "controls-position": "compact",
+                              },
+                              model: {
+                                value: _vm.fields.qty_in,
+                                callback: function ($$v) {
+                                  _vm.$set(_vm.fields, "qty_in", $$v)
+                                },
+                                expression: "fields.qty_in",
+                              },
+                            }),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "column" },
+                      [
+                        _c(
+                          "b-field",
+                          { attrs: { label: "Price Each" } },
+                          [
+                            _c("b-numberinput", {
+                              attrs: {
+                                expanded: "",
+                                "controls-position": "compact",
+                                "controls-alignment": "right",
+                                controls: false,
+                                min: "0",
+                                placeholder: "Price Each",
+                                step: "0.01",
+                              },
+                              model: {
+                                value: _vm.fields.price,
+                                callback: function ($$v) {
+                                  _vm.$set(_vm.fields, "price", $$v)
+                                },
+                                expression: "fields.price",
+                              },
+                            }),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                  ]),
                   _vm._v(" "),
                   _vm._m(0),
                 ],

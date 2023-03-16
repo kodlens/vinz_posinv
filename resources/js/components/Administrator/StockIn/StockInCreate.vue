@@ -8,29 +8,39 @@
                             <div class="box-header">
                                 STOCK IN
                             </div>
+
+                            <b-field label="Stock In Date">
+                                <b-datepicker v-model="fields.stock_in_date" placeholder="Stock In Date"></b-datepicker>
+                            </b-field>
+
                             <b-field label="Browse Item">
                                 <modal-browse-item :prop-item="itemName" @browseItem="emitBrowseItem($event)"></modal-browse-item>
                             </b-field>
 
-                            <b-field label="Quantity">
-                                <b-numberinput controls-alignment="right"
-                                   v-model="fields.qty_in"
-                                   min="0"
-                                   placeholder="Quantity"
-                                   controls-position="compact"
-                                ></b-numberinput>
-                            </b-field>
-
-                            <b-field label="Price Each">
-                                <b-numberinput
-                                    controls-position="compact"
-                                    controls-alignment="right"
-                                    v-model="fields.price" min="0" placeholder="Price Each" step="0.01"></b-numberinput>
-                            </b-field>
-
-                            <b-field label="Price Each">
-                                <b-datepicker v-model="fields.stock_in_date" placeholder="Stock In Date"></b-datepicker>
-                            </b-field>
+                            <div class="columns">
+                                <div class="column">
+                                    <b-field label="Quantity">
+                                        <b-numberinput controls-alignment="right"
+                                        v-model="fields.qty_in"
+                                        min="0"
+                                        :controls="false"
+                                        expanded
+                                        placeholder="Quantity"
+                                        controls-position="compact"
+                                        ></b-numberinput>
+                                    </b-field>
+                                </div>
+                                <div class="column">
+                                    <b-field label="Price Each">
+                                        <b-numberinput
+                                            expanded
+                                            controls-position="compact"
+                                            controls-alignment="right"
+                                            :controls="false"
+                                            v-model="fields.price" min="0" placeholder="Price Each" step="0.01"></b-numberinput>
+                                    </b-field>
+                                </div>
+                            </div>
 
                             <div class="buttons mt-3">
                                 <button class="button is-success" icon-right="account-arrow-up-outline">SAVE</button>
