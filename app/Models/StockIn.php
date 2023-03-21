@@ -13,7 +13,11 @@ class StockIn extends Model
     protected $primaryKey = 'stock_in_id';
 
     protected $fillable = [
-        'item_id', 'qty_in', 'price', 'stock_in_date'
+        'item_id', 
+        'qty_in', 
+        'price',
+        'srp',
+        'stock_in_date'
     ];
 
 

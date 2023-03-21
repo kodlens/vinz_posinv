@@ -6,7 +6,7 @@
                     <form @submit.prevent="submit">
                         <div class="box">
                             <div class="box-header">
-                                STOCK IN
+                                POINT OF SALE
                             </div>
 
                             <b-field label="Stock In Date">

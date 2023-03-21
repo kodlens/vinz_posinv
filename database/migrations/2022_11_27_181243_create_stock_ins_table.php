@@ -23,6 +23,7 @@ class CreateStockInsTable extends Migration
 
             $table->double('qty_in')->default(0);
             $table->double('price')->default(0);
+            $table->double('srp')->default(0);
             $table->date('stock_in_date')->nullable();
 
             $table->timestamps();

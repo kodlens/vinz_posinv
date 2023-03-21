@@ -101,7 +101,9 @@
                             <b-table-column field="price" label="Price" centered v-slot="props">
                                 {{ props.row.price }}
                             </b-table-column>
-
+                             <b-table-column field="srp" label="SR Price (SRP)" centered v-slot="props">
+                                {{ props.row.srp }}
+                            </b-table-column>
                             <!-- <b-table-column label="Action" v-slot="props">
                                 <div class="is-flex">
                                    <b-tooltip label="Edit" type="is-warning">

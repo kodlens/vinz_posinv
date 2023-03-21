@@ -57,7 +57,13 @@ Route::middleware(['auth'])->group(function() {
     
     Route::resource('/stock-in', App\Http\Controllers\Administrator\StockInController::class);
     Route::get('/get-stock-ins', [App\Http\Controllers\Administrator\StockInController::class, 'getStockIns']);
-    
+
+    Route::resource('/inventories', App\Http\Controllers\Administrator\InventoryController::class);
+    Route::get('/get-inventories', [App\Http\Controllers\Administrator\InventoryController::class, 'getData']);
+
+
+    Route::resource('/pos', App\Http\Controllers\Administrator\PointOfSaleController::class);
+    Route::get('/get-pos', [App\Http\Controllers\Administrator\PointOfSaleController::class, 'getData']);
     
 });
 

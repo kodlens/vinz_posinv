@@ -68,6 +68,7 @@ class StockInController extends Controller
             'item_id' => $req->item_id,
             'qty_in' => $req->qty_in,
             'price' => $req->price,
+            'srp' => $req->srp,
             'stock_in_date' => $stockDate
         ]);
 
@@ -96,12 +97,14 @@ class StockInController extends Controller
             'item_id' => ['required'],
             'qty_in' => ['required'],
             'price' => ['required'],
+            'srp' => ['required'],
         ]);
 
         $data = StockIn::find($id);
         $data->item_id = $req->item_id;
         $data->qty_in = $req->qty_in;
         $data->price = $req->price;
+        $data->srp = $req->srp;
         $data->stock_in_date = $stockDate;
         $data->save();
 
