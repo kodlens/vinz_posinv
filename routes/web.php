@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function() {
     
     Route::resource('/items', App\Http\Controllers\Administrator\ItemController::class);
     Route::get('/get-items', [App\Http\Controllers\Administrator\ItemController::class, 'getItems']);
+    Route::get('/get-pos-items', [App\Http\Controllers\Administrator\ItemController::class, 'getPosItems']);
     
     Route::resource('/stock-in', App\Http\Controllers\Administrator\StockInController::class);
     Route::get('/get-stock-ins', [App\Http\Controllers\Administrator\StockInController::class, 'getStockIns']);
@@ -64,6 +65,9 @@ Route::middleware(['auth'])->group(function() {
 
     Route::resource('/pos', App\Http\Controllers\Administrator\PointOfSaleController::class);
     Route::get('/get-pos', [App\Http\Controllers\Administrator\PointOfSaleController::class, 'getData']);
+
+    Route::resource('/sales', App\Http\Controllers\Administrator\SalesController::class);
+    Route::get('/get-sales', [App\Http\Controllers\Administrator\SalesController::class, 'getData']);
     
 });
 

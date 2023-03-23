@@ -35,6 +35,8 @@
 
                         <b-menu-item label="POS" icon="point-of-sale" tag="a" href="/pos"></b-menu-item>
 
+                        <b-menu-item label="Sales" icon="salesforce" tag="a" href="/sales"></b-menu-item>
+
                         <b-menu-item label="User" icon="account" tag="a" href="/users"></b-menu-item>
 
 

@@ -151,8 +151,11 @@ $navbar-item-img-max-height: 4rem;
 
 
 
-// Import Bulma and Buefy styles
 
+$modal-content-width: 800px;
+
+
+// Import Bulma and Buefy styles
 @import "~bulma";
 
 .sidebar-content{

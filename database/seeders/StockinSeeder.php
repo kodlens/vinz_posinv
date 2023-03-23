@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class InventorySeeder extends Seeder
+class StockinSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,11 +18,16 @@ class InventorySeeder extends Seeder
         $data = [
             [
                 'item_id' => 4,
-                'qty' => 10,
+                'qty_in' => 10,
+                'price' => 420,
+                'srp' => 550,
+                'stock_in_date' => '2023-03-23',
             ],
+            
+
         ];
 
-        \App\Models\Inventory::insertOrIgnore($data);
+        \App\Models\StockIn::insertOrIgnore($data);
 
     }
 }
