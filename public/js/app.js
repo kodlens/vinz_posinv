@@ -8236,26 +8236,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -29087,7 +29067,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card-width[data-v-4f01a62c]{\n    width: 640px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card-width[data-v-4f01a62c]{\r\n    width: 640px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -29111,7 +29091,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card-width[data-v-62fbbb92]{\r\n    width: 640px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card-width[data-v-62fbbb92]{\n    width: 640px;\n}\n@media only screen and (min-width: 1024px) {\n.modal-card-width[data-v-62fbbb92]{\n        width: 800px;\n}\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -32242,27 +32222,6 @@ var render = function () {
                     }),
                     _vm._v(" "),
                     _c("b-table-column", {
-                      attrs: {
-                        field: "item_description",
-                        label: "Item Description",
-                      },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "default",
-                          fn: function (props) {
-                            return [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(props.row.item_description) +
-                                  "\n                        "
-                              ),
-                            ]
-                          },
-                        },
-                      ]),
-                    }),
-                    _vm._v(" "),
-                    _c("b-table-column", {
                       attrs: { label: "Action" },
                       scopedSlots: _vm._u([
                         {
@@ -32588,78 +32547,19 @@ var render = function () {
                         1
                       ),
                     ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "columns" }, [
-                      _c(
-                        "div",
-                        { staticClass: "column" },
-                        [
-                          _c(
-                            "b-field",
-                            {
-                              attrs: {
-                                label: "Item Description",
-                                "label-position": "on-border",
-                                type: this.errors.item_description
-                                  ? "is-danger"
-                                  : "",
-                                message: this.errors.item_description
-                                  ? this.errors.item_description[0]
-                                  : "",
-                              },
-                            },
-                            [
-                              _c("b-input", {
-                                attrs: {
-                                  placeholder: "Item Description",
-                                  required: "",
-                                },
-                                model: {
-                                  value: _vm.fields.item_description,
-                                  callback: function ($$v) {
-                                    _vm.$set(
-                                      _vm.fields,
-                                      "item_description",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "fields.item_description",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
-                        ],
-                        1
-                      ),
-                    ]),
                   ]),
                 ]),
                 _vm._v(" "),
-                _c(
-                  "footer",
-                  { staticClass: "modal-card-foot" },
-                  [
-                    _c(
-                      "button",
-                      {
-                        class: _vm.btnClass,
-                        attrs: { label: "Save", type: "is-success" },
-                      },
-                      [_vm._v("SAVE")]
-                    ),
-                    _vm._v(" "),
-                    _c("b-button", {
-                      attrs: { label: "Close" },
-                      on: {
-                        click: function ($event) {
-                          _vm.isModalCreate = false
-                        },
-                      },
-                    }),
-                  ],
-                  1
-                ),
+                _c("footer", { staticClass: "modal-card-foot" }, [
+                  _c(
+                    "button",
+                    {
+                      class: _vm.btnClass,
+                      attrs: { label: "Save", type: "is-success" },
+                    },
+                    [_vm._v("SAVE")]
+                  ),
+                ]),
               ]),
             ]
           ),
@@ -35930,7 +35830,7 @@ var render = function () {
           },
         },
         [
-          _c("div", { staticClass: "modal-card" }, [
+          _c("div", { staticClass: "modal-card modal-card-width" }, [
             _c("header", { staticClass: "modal-card-head" }, [
               _c("p", { staticClass: "modal-card-title" }, [
                 _vm._v("SELECT ITEM"),
@@ -36040,219 +35940,207 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c(
-                    "div",
-                    { staticClass: "table-container" },
+                    "b-table",
+                    {
+                      attrs: {
+                        data: _vm.data,
+                        loading: _vm.loading,
+                        paginated: "",
+                        "backend-pagination": "",
+                        total: _vm.total,
+                        "per-page": _vm.perPage,
+                        "detail-transition": "",
+                        "aria-next-label": "Next page",
+                        "aria-previous-label": "Previouse page",
+                        "aria-page-label": "Page",
+                        "show-detail-icon": true,
+                        "aria-current-label": "Current page",
+                        "default-sort-direction": "defualtSortDirection",
+                      },
+                      on: { "page-change": _vm.onPageChange, sort: _vm.onSort },
+                    },
                     [
-                      _c(
-                        "b-table",
-                        {
-                          attrs: {
-                            data: _vm.data,
-                            loading: _vm.loading,
-                            paginated: "",
-                            "backend-pagination": "",
-                            total: _vm.total,
-                            "per-page": _vm.perPage,
-                            "detail-transition": "",
-                            "aria-next-label": "Next page",
-                            "aria-previous-label": "Previouse page",
-                            "aria-page-label": "Page",
-                            "show-detail-icon": true,
-                            "aria-current-label": "Current page",
-                            "default-sort-direction": "defualtSortDirection",
-                          },
-                          on: {
-                            "page-change": _vm.onPageChange,
-                            sort: _vm.onSort,
-                          },
-                        },
-                        [
-                          _c("b-table-column", {
-                            attrs: { field: "item_id", label: "ID" },
-                            scopedSlots: _vm._u([
-                              {
-                                key: "default",
-                                fn: function (props) {
-                                  return [
-                                    _vm._v(
-                                      "\n                                " +
-                                        _vm._s(props.row.item_id) +
-                                        "\n                            "
-                                    ),
-                                  ]
-                                },
-                              },
-                            ]),
-                          }),
-                          _vm._v(" "),
-                          _c("b-table-column", {
-                            attrs: { field: "barcode", label: "Barcode" },
-                            scopedSlots: _vm._u([
-                              {
-                                key: "default",
-                                fn: function (props) {
-                                  return [
-                                    _vm._v(
-                                      "\n                                " +
-                                        _vm._s(props.row.barcode) +
-                                        "\n                            "
-                                    ),
-                                  ]
-                                },
-                              },
-                            ]),
-                          }),
-                          _vm._v(" "),
-                          _c("b-table-column", {
-                            attrs: { field: "item_name", label: "Item Name" },
-                            scopedSlots: _vm._u([
-                              {
-                                key: "default",
-                                fn: function (props) {
-                                  return [
-                                    _vm._v(
-                                      "\n                                " +
-                                        _vm._s(props.row.item_name) +
-                                        "\n                            "
-                                    ),
-                                  ]
-                                },
-                              },
-                            ]),
-                          }),
-                          _vm._v(" "),
-                          _c("b-table-column", {
-                            attrs: {
-                              field: "item_description",
-                              label: "Description",
+                      _c("b-table-column", {
+                        attrs: { field: "item_id", label: "ID" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function (props) {
+                              return [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(props.row.item_id) +
+                                    "\n                        "
+                                ),
+                              ]
                             },
-                            scopedSlots: _vm._u([
-                              {
-                                key: "default",
-                                fn: function (props) {
-                                  return [
-                                    _vm._v(
-                                      "\n                                " +
-                                        _vm._s(props.row.item_description) +
-                                        "\n                            "
-                                    ),
-                                  ]
-                                },
-                              },
-                            ]),
-                          }),
-                          _vm._v(" "),
-                          _c("b-table-column", {
-                            attrs: { field: "stock_qty", label: "Stock Qty" },
-                            scopedSlots: _vm._u([
-                              {
-                                key: "default",
-                                fn: function (props) {
-                                  return [
-                                    props.row.stock_qty
-                                      ? _c("span", [
-                                          _vm._v(
-                                            " " +
-                                              _vm._s(props.row.stock_qty) +
-                                              " "
-                                          ),
-                                        ])
-                                      : _vm._e(),
-                                  ]
-                                },
-                              },
-                            ]),
-                          }),
-                          _vm._v(" "),
-                          _c("b-table-column", {
-                            attrs: { field: "price", label: "Price" },
-                            scopedSlots: _vm._u([
-                              {
-                                key: "default",
-                                fn: function (props) {
-                                  return [
-                                    props.row.price
-                                      ? _c("span", [
-                                          _vm._v(
-                                            " " +
-                                              _vm._s(
-                                                _vm._f("formatToCurrency")(
-                                                  props.row.price
-                                                )
-                                              ) +
-                                              " "
-                                          ),
-                                        ])
-                                      : _vm._e(),
-                                  ]
-                                },
-                              },
-                            ]),
-                          }),
-                          _vm._v(" "),
-                          _c("b-table-column", {
-                            attrs: { field: "srp", label: "SRP" },
-                            scopedSlots: _vm._u([
-                              {
-                                key: "default",
-                                fn: function (props) {
-                                  return [
-                                    props.row.srp
-                                      ? _c("span", [
-                                          _vm._v(
-                                            _vm._s(
-                                              _vm._f("formatToCurrency")(
-                                                props.row.srp
-                                              )
+                          },
+                        ]),
+                      }),
+                      _vm._v(" "),
+                      _c("b-table-column", {
+                        attrs: { field: "barcode", label: "Barcode" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function (props) {
+                              return [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(props.row.barcode) +
+                                    "\n                        "
+                                ),
+                              ]
+                            },
+                          },
+                        ]),
+                      }),
+                      _vm._v(" "),
+                      _c("b-table-column", {
+                        attrs: { field: "item_name", label: "Item Name" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function (props) {
+                              return [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(props.row.item_name) +
+                                    "\n                        "
+                                ),
+                              ]
+                            },
+                          },
+                        ]),
+                      }),
+                      _vm._v(" "),
+                      _c("b-table-column", {
+                        attrs: {
+                          field: "item_description",
+                          label: "Description",
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function (props) {
+                              return [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(props.row.item_description) +
+                                    "\n                        "
+                                ),
+                              ]
+                            },
+                          },
+                        ]),
+                      }),
+                      _vm._v(" "),
+                      _c("b-table-column", {
+                        attrs: { field: "stock_qty", label: "Stock Qty" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function (props) {
+                              return [
+                                props.row.stock_qty
+                                  ? _c("span", [
+                                      _vm._v(
+                                        " " + _vm._s(props.row.stock_qty) + " "
+                                      ),
+                                    ])
+                                  : _vm._e(),
+                              ]
+                            },
+                          },
+                        ]),
+                      }),
+                      _vm._v(" "),
+                      _c("b-table-column", {
+                        attrs: { field: "price", label: "Price" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function (props) {
+                              return [
+                                props.row.price
+                                  ? _c("span", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm._f("formatToCurrency")(
+                                              props.row.price
                                             )
-                                          ),
-                                        ])
-                                      : _vm._e(),
-                                  ]
-                                },
-                              },
-                            ]),
-                          }),
-                          _vm._v(" "),
-                          _c("b-table-column", {
-                            attrs: { field: "", label: "Action" },
-                            scopedSlots: _vm._u([
-                              {
-                                key: "default",
-                                fn: function (props) {
-                                  return [
+                                          ) +
+                                          " "
+                                      ),
+                                    ])
+                                  : _vm._e(),
+                              ]
+                            },
+                          },
+                        ]),
+                      }),
+                      _vm._v(" "),
+                      _c("b-table-column", {
+                        attrs: { field: "srp", label: "SRP" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function (props) {
+                              return [
+                                props.row.srp
+                                  ? _c("span", [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("formatToCurrency")(
+                                            props.row.srp
+                                          )
+                                        )
+                                      ),
+                                    ])
+                                  : _vm._e(),
+                              ]
+                            },
+                          },
+                        ]),
+                      }),
+                      _vm._v(" "),
+                      _c("b-table-column", {
+                        attrs: { field: "", label: "Action" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function (props) {
+                              return [
+                                _c(
+                                  "div",
+                                  { staticClass: "buttons" },
+                                  [
                                     _c(
-                                      "div",
-                                      { staticClass: "buttons" },
-                                      [
-                                        _c(
-                                          "b-button",
-                                          {
-                                            staticClass: "is-small is-warning",
-                                            on: {
-                                              click: function ($event) {
-                                                return _vm.selectData(props.row)
-                                              },
-                                            },
+                                      "b-button",
+                                      {
+                                        staticClass: "is-small is-warning",
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.selectData(props.row)
                                           },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fa fa-pencil",
-                                            }),
-                                            _vm._v("  SELECT"),
-                                          ]
-                                        ),
-                                      ],
-                                      1
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fa fa-pencil",
+                                        }),
+                                        _vm._v("  SELECT"),
+                                      ]
                                     ),
-                                  ]
-                                },
-                              },
-                            ]),
-                          }),
-                        ],
-                        1
-                      ),
+                                  ],
+                                  1
+                                ),
+                              ]
+                            },
+                          },
+                        ]),
+                      }),
                     ],
                     1
                   ),

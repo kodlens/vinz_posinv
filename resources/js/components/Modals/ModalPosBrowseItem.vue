@@ -17,7 +17,7 @@
             aria-role="dialog" 
             aria-modal>
 
-            <div class="modal-card">
+            <div class="modal-card modal-card-width">
                 <header class="modal-card-head">
                     <p class="modal-card-title">SELECT ITEM</p>
                     <button type="button" class="delete"
@@ -35,61 +35,61 @@
                             </p>
                         </b-field>
 
-                        <div class="table-container">
-                            <b-table
-                                :data='data'
-                                :loading="loading"
-                                paginated
-                                backend-pagination
-                                :total='total'
-                                :per-page="perPage"
-                                @page-change="onPageChange"
-                                detail-transition=""
-                                aria-next-label="Next page"
-                                aria-previous-label="Previouse page"
-                                aria-page-label="Page"
-                                :show-detail-icon=true
-                                aria-current-label="Current page"
-                                default-sort-direction="defualtSortDirection"
-                                @sort="onSort">
+                        
+                        <b-table
+                            :data='data'
+                            :loading="loading"
+                            paginated
+                            backend-pagination
+                            :total='total'
+                            :per-page="perPage"
+                            @page-change="onPageChange"
+                            detail-transition=""
+                            aria-next-label="Next page"
+                            aria-previous-label="Previouse page"
+                            aria-page-label="Page"
+                            :show-detail-icon=true
+                            aria-current-label="Current page"
+                            default-sort-direction="defualtSortDirection"
+                            @sort="onSort">
 
-                                <b-table-column field="item_id" label="ID" v-slot="props">
-                                    {{props.row.item_id}}
-                                </b-table-column>
+                            <b-table-column field="item_id" label="ID" v-slot="props">
+                                {{props.row.item_id}}
+                            </b-table-column>
 
-                                <b-table-column field="barcode" label="Barcode" v-slot="props">
-                                    {{props.row.barcode}}
-                                </b-table-column>
+                            <b-table-column field="barcode" label="Barcode" v-slot="props">
+                                {{props.row.barcode}}
+                            </b-table-column>
 
-                                <b-table-column field="item_name" label="Item Name" v-slot="props">
-                                    {{props.row.item_name}}
-                                </b-table-column>
+                            <b-table-column field="item_name" label="Item Name" v-slot="props">
+                                {{props.row.item_name}}
+                            </b-table-column>
 
-                                <b-table-column field="item_description" label="Description" v-slot="props">
-                                    {{props.row.item_description}}
-                                </b-table-column>
+                            <b-table-column field="item_description" label="Description" v-slot="props">
+                                {{props.row.item_description}}
+                            </b-table-column>
 
-                                <b-table-column field="stock_qty" label="Stock Qty" v-slot="props">
-                                    <span v-if="props.row.stock_qty"> {{ props.row.stock_qty }} </span>
-                                </b-table-column>
+                            <b-table-column field="stock_qty" label="Stock Qty" v-slot="props">
+                                <span v-if="props.row.stock_qty"> {{ props.row.stock_qty }} </span>
+                            </b-table-column>
 
-                                <b-table-column field="price" label="Price" v-slot="props">
-                                    <span v-if="props.row.price"> {{ props.row.price | formatToCurrency }} </span>
+                            <b-table-column field="price" label="Price" v-slot="props">
+                                <span v-if="props.row.price"> {{ props.row.price | formatToCurrency }} </span>
 
-                                </b-table-column>
+                            </b-table-column>
 
-                                <b-table-column field="srp" label="SRP" v-slot="props">
-                                    <span v-if="props.row.srp">{{props.row.srp | formatToCurrency }}</span>
-                                </b-table-column>
+                            <b-table-column field="srp" label="SRP" v-slot="props">
+                                <span v-if="props.row.srp">{{props.row.srp | formatToCurrency }}</span>
+                            </b-table-column>
 
-                                <b-table-column field="" label="Action" v-slot="props">
-                                    <div class="buttons">
-                                        <b-button class="is-small is-warning" @click="selectData(props.row)">
-                                            <i class="fa fa-pencil"></i>&nbsp;&nbsp;SELECT</b-button>
-                                    </div>
-                                </b-table-column>
-                            </b-table>
-                        </div>
+                            <b-table-column field="" label="Action" v-slot="props">
+                                <div class="buttons">
+                                    <b-button class="is-small is-warning" @click="selectData(props.row)">
+                                        <i class="fa fa-pencil"></i>&nbsp;&nbsp;SELECT</b-button>
+                                </div>
+                            </b-table-column>
+                        </b-table>
+                       
 
                     </div>
                 </section>
@@ -216,7 +216,14 @@ export default {
 </script>
 
 <style scoped>
-.card-width{
-    width: 640px;
-}
+    .card-width{
+        width: 640px;
+    }
+
+    @media only screen and (min-width: 1024px) {
+        .modal-card-width{
+            width: 800px;
+        }
+    }
+
 </style>

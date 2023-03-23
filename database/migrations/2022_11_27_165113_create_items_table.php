@@ -20,7 +20,6 @@ class CreateItemsTable extends Migration
             $table->string('brand')->nullable()->default('');
             $table->string('model')->nullable()->default('');
             $table->string('item_name')->nullable()->default('');
-            $table->string('item_description')->nullable()->default('');
             $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });

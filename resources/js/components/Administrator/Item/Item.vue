@@ -105,10 +105,6 @@
                                 {{ props.row.item_name }}
                             </b-table-column>
 
-                            <b-table-column field="item_description" label="Item Description" v-slot="props">
-                                {{ props.row.item_description }}
-                            </b-table-column>
-
                             <b-table-column label="Action" v-slot="props">
                                 <div class="is-flex">
                                     <b-tooltip label="Edit" type="is-warning">
@@ -205,18 +201,6 @@
                                     </b-field>
                                 </div>
                             </div>
-
-                            <div class="columns">
-                                <div class="column">
-                                    <b-field label="Item Description" label-position="on-border"
-                                             :type="this.errors.item_description ? 'is-danger':''"
-                                             :message="this.errors.item_description ? this.errors.item_description[0] : ''">
-                                        <b-input v-model="fields.item_description"
-                                                 placeholder="Item Description" required>
-                                        </b-input>
-                                    </b-field>
-                                </div>
-                            </div>
                         </div>
                     </section>
                     <footer class="modal-card-foot">
@@ -224,10 +208,6 @@
                             :class="btnClass"
                             label="Save"
                             type="is-success">SAVE</button>
-                        <b-button
-                            label="Close"
-                            @click="isModalCreate=false"/>
-
                     </footer>
                 </div>
             </form><!--close form-->

@@ -32,7 +32,6 @@ class ItemController extends Controller
             ->where('barcode', 'like', '%'. $req->barcode . '%')
             ->where('serial', 'like', '%'. $req->serial . '%')
             ->select('items.item_id','items.barcode', 'items.serial', 'items.brand', 'items.model', 'items.item_name',
-                'items.item_description', 
                 DB::raw('(select qty from inventories where inventories.item_id = items.item_id limit 1) as stock_qty'),
                 DB::raw('(select price from stock_ins where stock_ins.item_id = items.item_id order by stock_in_date desc limit 1) as price'),
                 DB::raw('(select srp from stock_ins where stock_ins.item_id = items.item_id order by stock_in_date desc limit 1) as srp'),
@@ -73,7 +72,6 @@ class ItemController extends Controller
             'brand' => strtoupper($req->brand),
             'model' => strtoupper($req->model),
             'item_name' => strtoupper($req->item_name),
-            'item_description' => strtoupper($req->item_description)
         ]);
 
         Inventory::create([
@@ -97,8 +95,6 @@ class ItemController extends Controller
         $data->brand = strtoupper($req->brand);
         $data->model = strtoupper($req->model);
         $data->item_name = strtoupper($req->item_name);
-        $data->item_description = strtoupper($req->item_description);
-
         $data->save();
 
         return response()->json([
