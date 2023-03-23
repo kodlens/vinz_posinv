@@ -74,14 +74,11 @@ Route::middleware(['auth'])->group(function() {
 
 
 
-
 /*     ADMINSITRATOR          */
-
 
 Route::get('/session', function(){
     return Session::all();
 });
-
 
 Route::get('/applogout', function(Request $req){
     \Auth::logout();
