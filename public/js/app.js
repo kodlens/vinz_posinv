@@ -7806,6 +7806,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -7997,6 +8012,170 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.loadAsyncData();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['propId', 'propData'],
+  data: function data() {
+    return {
+      id: 0,
+      fields: {
+        item_id: 0,
+        adjustment: '',
+        adjusted_qty: 0,
+        remarks: '',
+        adjustment_date: new Date()
+      },
+      itemName: '',
+      errors: {},
+      btnClass: {
+        'is-success': true,
+        'button': true,
+        'is-loading': false
+      }
+    };
+  },
+  methods: {
+    submit: function submit() {
+      var _this = this;
+
+      if (this.id > 0) {
+        //update
+        axios.put('/inventory-adjustment/' + this.id, this.fields).then(function (res) {
+          if (res.data.status === 'updated') {
+            _this.$buefy.dialog.alert({
+              title: 'UPDATED!',
+              message: 'Successfully updated.',
+              type: 'is-success',
+              onConfirm: function onConfirm() {
+                window.location = '/inventory-adjustment';
+              }
+            });
+          }
+        })["catch"](function (err) {
+          if (err.response.status === 422) {
+            _this.errors = err.response.data.errors;
+          }
+        });
+      } else {
+        //insert here
+        axios.post('/inventory-adjustment', this.fields).then(function (res) {
+          if (res.data.status === 'saved') {
+            _this.$buefy.dialog.alert({
+              title: 'SAVED!',
+              message: 'Successfully saved.',
+              type: 'is-success',
+              confirmText: 'OK',
+              onConfirm: function onConfirm() {
+                window.location = '/inventory-adjustment';
+              }
+            });
+          }
+        })["catch"](function (err) {
+          if (err.response.status === 422) {
+            _this.errors = err.response.data.errors;
+          }
+        });
+      }
+    },
+    emitBrowseItem: function emitBrowseItem(dataRow) {
+      this.fields.item_id = dataRow.item_id;
+      this.itemName = dataRow.item_name;
+    },
+    initData: function initData() {
+      this.id = parseInt(this.propId);
+
+      if (this.id > 0) {
+        var ndata = JSON.parse(this.propData);
+        this.fields.item_id = ndata.item_id;
+        this.fields.qty_in = ndata.qty_in;
+        this.fields.price = ndata.price;
+        this.fields.stock_in_date = new Date(ndata.stock_in_date);
+        this.itemName = ndata.item.item_name;
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.initData();
   }
 });
 
@@ -29359,6 +29538,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n /
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=style&index=0&id=3487e574&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=style&index=0&id=3487e574&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.box-header[data-v-3487e574]{\n    font-weight: bold;\n    font-size: 1.3em;\n    margin: 10px 0;\n    padding: 10px 0;\n    border-bottom: 1px solid gray;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/NavbarComponent.vue?vue&type=style&index=0&id=5dc66390&scoped=true&lang=css&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/NavbarComponent.vue?vue&type=style&index=0&id=5dc66390&scoped=true&lang=css& ***!
@@ -29837,6 +30040,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=style&index=0&id=3487e574&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=style&index=0&id=3487e574&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InventoryAdjustmentCreate_vue_vue_type_style_index_0_id_3487e574_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InventoryAdjustmentCreate.vue?vue&type=style&index=0&id=3487e574&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=style&index=0&id=3487e574&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InventoryAdjustmentCreate_vue_vue_type_style_index_0_id_3487e574_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InventoryAdjustmentCreate_vue_vue_type_style_index_0_id_3487e574_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -30443,6 +30676,47 @@ component.options.__file = "resources/js/components/Administrator/Inventory Adju
 
 /***/ }),
 
+/***/ "./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _InventoryAdjustmentCreate_vue_vue_type_template_id_3487e574_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InventoryAdjustmentCreate.vue?vue&type=template&id=3487e574&scoped=true& */ "./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=template&id=3487e574&scoped=true&");
+/* harmony import */ var _InventoryAdjustmentCreate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InventoryAdjustmentCreate.vue?vue&type=script&lang=js& */ "./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=script&lang=js&");
+/* harmony import */ var _InventoryAdjustmentCreate_vue_vue_type_style_index_0_id_3487e574_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InventoryAdjustmentCreate.vue?vue&type=style&index=0&id=3487e574&scoped=true&lang=css& */ "./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=style&index=0&id=3487e574&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _InventoryAdjustmentCreate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _InventoryAdjustmentCreate_vue_vue_type_template_id_3487e574_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _InventoryAdjustmentCreate_vue_vue_type_template_id_3487e574_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "3487e574",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Administrator/Inventory/Inventories.vue":
 /*!*************************************************************************!*\
   !*** ./resources/js/components/Administrator/Inventory/Inventories.vue ***!
@@ -31031,6 +31305,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************!*\
+  !*** ./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InventoryAdjustmentCreate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InventoryAdjustmentCreate.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InventoryAdjustmentCreate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Administrator/Inventory/Inventories.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************!*\
   !*** ./resources/js/components/Administrator/Inventory/Inventories.vue?vue&type=script&lang=js& ***!
@@ -31236,6 +31526,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=style&index=0&id=3487e574&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=style&index=0&id=3487e574&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InventoryAdjustmentCreate_vue_vue_type_style_index_0_id_3487e574_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InventoryAdjustmentCreate.vue?vue&type=style&index=0&id=3487e574&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=style&index=0&id=3487e574&scoped=true&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Administrator/NavbarComponent.vue?vue&type=style&index=0&id=5dc66390&scoped=true&lang=css&":
 /*!****************************************************************************************************************************!*\
   !*** ./resources/js/components/Administrator/NavbarComponent.vue?vue&type=style&index=0&id=5dc66390&scoped=true&lang=css& ***!
@@ -31357,6 +31660,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InventoryAdjustment_vue_vue_type_template_id_35ab1658___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InventoryAdjustment_vue_vue_type_template_id_35ab1658___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InventoryAdjustment.vue?vue&type=template&id=35ab1658& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustment.vue?vue&type=template&id=35ab1658&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=template&id=3487e574&scoped=true&":
+/*!*********************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=template&id=3487e574&scoped=true& ***!
+  \*********************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InventoryAdjustmentCreate_vue_vue_type_template_id_3487e574_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InventoryAdjustmentCreate_vue_vue_type_template_id_3487e574_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InventoryAdjustmentCreate_vue_vue_type_template_id_3487e574_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InventoryAdjustmentCreate.vue?vue&type=template&id=3487e574&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=template&id=3487e574&scoped=true&");
 
 
 /***/ }),
@@ -31845,7 +32165,7 @@ var render = function () {
                   },
                   [
                     _c("b-table-column", {
-                      attrs: { field: "inventory_id", label: "ID" },
+                      attrs: { field: "inventory_adjustment_id", label: "ID" },
                       scopedSlots: _vm._u([
                         {
                           key: "default",
@@ -31853,7 +32173,7 @@ var render = function () {
                             return [
                               _vm._v(
                                 "\n                            " +
-                                  _vm._s(props.row.item_id) +
+                                  _vm._s(props.row.inventory_adjustment_id) +
                                   "\n                        "
                               ),
                             ]
@@ -31881,7 +32201,7 @@ var render = function () {
                     }),
                     _vm._v(" "),
                     _c("b-table-column", {
-                      attrs: { field: "qty", label: "Quantity" },
+                      attrs: { field: "adjusted_qty", label: "Adjusted Qty" },
                       scopedSlots: _vm._u([
                         {
                           key: "default",
@@ -31889,7 +32209,7 @@ var render = function () {
                             return [
                               _vm._v(
                                 "\n                            " +
-                                  _vm._s(props.row.qty) +
+                                  _vm._s(props.row.adjusted_qty) +
                                   "\n                        "
                               ),
                             ]
@@ -31897,6 +32217,80 @@ var render = function () {
                         },
                       ]),
                     }),
+                    _vm._v(" "),
+                    _c("b-table-column", {
+                      attrs: { field: "current_qty", label: "Current Qty" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function (props) {
+                            return [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(props.row.current_qty) +
+                                  "\n                        "
+                              ),
+                            ]
+                          },
+                        },
+                      ]),
+                    }),
+                    _vm._v(" "),
+                    _c("b-table-column", {
+                      attrs: { field: "adjustment", label: "Adjustment" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function (props) {
+                            return [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(props.row.adjustment) +
+                                  "\n                        "
+                              ),
+                            ]
+                          },
+                        },
+                      ]),
+                    }),
+                    _vm._v(" "),
+                    _c("b-table-column", {
+                      attrs: { field: "remarks", label: "Remarks" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function (props) {
+                            return [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(props.row.remarks) +
+                                  "\n                        "
+                              ),
+                            ]
+                          },
+                        },
+                      ]),
+                    }),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "buttons mt-3" },
+                  [
+                    _c(
+                      "b-button",
+                      {
+                        staticClass: "is-success",
+                        attrs: {
+                          tag: "a",
+                          href: "/inventory-adjustment/create",
+                          "icon-right": "account-arrow-up-outline",
+                        },
+                      },
+                      [_vm._v("CREATE ADJUSTMENT")]
+                    ),
                   ],
                   1
                 ),
@@ -31941,7 +32335,7 @@ var render = function () {
               _c("div", { staticClass: "modal-card" }, [
                 _c("header", { staticClass: "modal-card-head" }, [
                   _c("p", { staticClass: "modal-card-title" }, [
-                    _vm._v("Item Information"),
+                    _vm._v("Adjustment Information"),
                   ]),
                   _vm._v(" "),
                   _c("button", {
@@ -32217,6 +32611,212 @@ var render = function () {
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=template&id=3487e574&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue?vue&type=template&id=3487e574&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "section" }, [
+      _c("div", { staticClass: "columns is-centered" }, [
+        _c("div", { staticClass: "column is-6-desktop is-8-tablet" }, [
+          _c(
+            "form",
+            {
+              on: {
+                submit: function ($event) {
+                  $event.preventDefault()
+                  return _vm.submit.apply(null, arguments)
+                },
+              },
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "box" },
+                [
+                  _c("div", { staticClass: "box-header" }, [
+                    _vm._v(
+                      "\n                            CREATE INVENTORY ADJUSTMENT\n                        "
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "b-field",
+                    { attrs: { label: "Stock In Date" } },
+                    [
+                      _c("b-datepicker", {
+                        attrs: { disabled: "", placeholder: "Stock In Date" },
+                        model: {
+                          value: _vm.fields.adjustment_date,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.fields, "adjustment_date", $$v)
+                          },
+                          expression: "fields.adjustment_date",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-field",
+                    { attrs: { label: "Browse Item" } },
+                    [
+                      _c("modal-pos-browse-item", {
+                        attrs: { "prop-item": _vm.itemName },
+                        on: {
+                          browseItem: function ($event) {
+                            return _vm.emitBrowseItem($event)
+                          },
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "columns" }, [
+                    _c(
+                      "div",
+                      { staticClass: "column" },
+                      [
+                        _c(
+                          "b-field",
+                          { attrs: { label: "Adjustment Type", expanded: "" } },
+                          [
+                            _c(
+                              "b-select",
+                              {
+                                attrs: {
+                                  expanded: "",
+                                  placeholder: "Adjustment Type",
+                                },
+                                model: {
+                                  value: _vm.fields.adjustment,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.fields, "adjustment", $$v)
+                                  },
+                                  expression: "fields.adjustment",
+                                },
+                              },
+                              [
+                                _c("option", { attrs: { value: "SUBTRACT" } }, [
+                                  _vm._v("SUBTRACT"),
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "ADD" } }, [
+                                  _vm._v("ADD"),
+                                ]),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "column" },
+                      [
+                        _c(
+                          "b-field",
+                          { attrs: { label: "Quantity" } },
+                          [
+                            _c("b-numberinput", {
+                              attrs: {
+                                "controls-alignment": "right",
+                                min: "0",
+                                controls: false,
+                                expanded: "",
+                                placeholder: "Quantity",
+                                "controls-position": "compact",
+                              },
+                              model: {
+                                value: _vm.fields.adjusted_qty,
+                                callback: function ($$v) {
+                                  _vm.$set(_vm.fields, "adjusted_qty", $$v)
+                                },
+                                expression: "fields.adjusted_qty",
+                              },
+                            }),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "columns" }, [
+                    _c(
+                      "div",
+                      { staticClass: "column" },
+                      [
+                        _c("b-input", {
+                          attrs: {
+                            type: "textarea",
+                            placeholder: "Adjustment reason...",
+                          },
+                          model: {
+                            value: _vm.fields.remarks,
+                            callback: function ($$v) {
+                              _vm.$set(_vm.fields, "remarks", $$v)
+                            },
+                            expression: "fields.remarks",
+                          },
+                        }),
+                      ],
+                      1
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0),
+                ],
+                1
+              ),
+            ]
+          ),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "buttons mt-3" }, [
+      _c(
+        "button",
+        {
+          staticClass: "button is-success",
+          attrs: { "icon-right": "account-arrow-up-outline" },
+        },
+        [_vm._v("SAVE")]
+      ),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -61446,6 +62046,7 @@ var map = {
 	"./components/AboutPage.vue": "./resources/js/components/AboutPage.vue",
 	"./components/Administrator/Dashboard.vue": "./resources/js/components/Administrator/Dashboard.vue",
 	"./components/Administrator/Inventory Adjustment/InventoryAdjustment.vue": "./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustment.vue",
+	"./components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue": "./resources/js/components/Administrator/Inventory Adjustment/InventoryAdjustmentCreate.vue",
 	"./components/Administrator/Inventory/Inventories.vue": "./resources/js/components/Administrator/Inventory/Inventories.vue",
 	"./components/Administrator/Item/Item.vue": "./resources/js/components/Administrator/Item/Item.vue",
 	"./components/Administrator/NavbarComponent.vue": "./resources/js/components/Administrator/NavbarComponent.vue",

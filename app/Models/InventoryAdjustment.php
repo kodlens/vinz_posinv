@@ -13,9 +13,11 @@ class InventoryAdjustment extends Model
     protected $primaryKey = 'inventory_adjustment_id';
     protected $fillable = [
         'item_id', 
-        'adjust_option',
+        'adjustment',
+        'current_qty',
         'adjusted_qty',
-        'remarks'
+        'remarks',
+        'datetime_adjusted'
     ];
 
     public function item(){

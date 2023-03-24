@@ -55,16 +55,28 @@
                             :default-sort-direction="defaultSortDirection"
                             @sort="onSort">
 
-                            <b-table-column field="inventory_id" label="ID" v-slot="props">
-                                {{ props.row.item_id }}
+                            <b-table-column field="inventory_adjustment_id" label="ID" v-slot="props">
+                                {{ props.row.inventory_adjustment_id }}
                             </b-table-column>
 
                             <b-table-column field="item" label="Item Name" v-slot="props">
                                 {{ props.row.item.item_name }}
                             </b-table-column>
 
-                            <b-table-column field="qty" label="Quantity" v-slot="props">
-                                {{ props.row.qty }}
+                            <b-table-column field="adjusted_qty" label="Adjusted Qty" v-slot="props">
+                                {{ props.row.adjusted_qty }}
+                            </b-table-column>
+
+                            <b-table-column field="current_qty" label="Current Qty" v-slot="props">
+                                {{ props.row.current_qty }}
+                            </b-table-column>
+
+                            <b-table-column field="adjustment" label="Adjustment" v-slot="props">
+                                {{ props.row.adjustment }}
+                            </b-table-column>
+
+                            <b-table-column field="remarks" label="Remarks" v-slot="props">
+                                {{ props.row.remarks }}
                             </b-table-column>
 
                             <!-- <b-table-column label="Action" v-slot="props">
@@ -79,9 +91,12 @@
                             </b-table-column> -->
                         </b-table>
 
-                        <!-- <div class="buttons mt-3">
-                            <b-button @click="openModal" icon-right="account-arrow-up-outline" class="is-success">NEW</b-button>
-                        </div> -->
+                        <div class="buttons mt-3">
+                            <b-button tag="a"
+                                href="/inventory-adjustment/create"
+                                icon-right="account-arrow-up-outline" 
+                                class="is-success">CREATE ADJUSTMENT</b-button>
+                        </div>
 
                     </div>
                 </div><!--col -->
@@ -100,7 +115,7 @@
             <form @submit.prevent="submit">
                 <div class="modal-card">
                     <header class="modal-card-head">
-                        <p class="modal-card-title">Item Information</p>
+                        <p class="modal-card-title">Adjustment Information</p>
                         <button
                             type="button"
                             class="delete"
