@@ -16,7 +16,6 @@ class SalesController extends Controller
         return view('administrator.sales');
     }
     
-
     public function getData(Request $req){
 
         $sort = explode('.', $req->sort_by);

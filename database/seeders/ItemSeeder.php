@@ -22,7 +22,6 @@ class ItemSeeder extends Seeder
                 'brand' => 'KINGSTON',
                 'model' => '',
                 'item_name' => 'LAPTOP RAM DDR4 2400Mhz KINGSTON',
-                'item_description' => 'RAM for laptop ddr4 kingston',
                 'active' => 1
             ],
             [
@@ -31,7 +30,6 @@ class ItemSeeder extends Seeder
                 'brand' => 'KINGSTON',
                 'model' => '',
                 'item_name' => '240 SSD KINGSTON FOR LAPTOP',
-                'item_description' => 'SSD 240GB for laptop',
                 'active' => 1
             ],
             [
@@ -40,7 +38,6 @@ class ItemSeeder extends Seeder
                 'brand' => 'KINGSTON',
                 'model' => '',
                 'item_name' => '512 SSD KINGSTON FOR LAPTOP',
-                'item_description' => 'SSD 512GB for laptop',
                 'active' => 1
             ],
             [
@@ -49,7 +46,6 @@ class ItemSeeder extends Seeder
                 'brand' => 'A4TECH',
                 'model' => '',
                 'item_name' => 'MOUSE AND KEYBOARD USB TYPE A4TECH',
-                'item_description' => 'MOUSE AND KEYBOARD USB TYPE A4TECH',
                 'active' => 1
             ],
 

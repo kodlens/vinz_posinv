@@ -32,13 +32,14 @@
                         <b-menu-item label="Stock In" icon="tag-plus-outline" tag="a" href="/stock-in"></b-menu-item>
 
                         <b-menu-item label="Inventory" icon="folder-multiple-outline" tag="a" href="/inventories"></b-menu-item>
+                        
+                        <b-menu-item label="Inventory Adjustment" icon="folder-multiple-outline" tag="a" href="/inventory-adjustment"></b-menu-item>
 
                         <b-menu-item label="POS" icon="point-of-sale" tag="a" href="/pos"></b-menu-item>
 
                         <b-menu-item label="Sales" icon="salesforce" tag="a" href="/sales"></b-menu-item>
 
                         <b-menu-item label="User" icon="account" tag="a" href="/users"></b-menu-item>
-
 
                         <!-- <b-menu-item label="Franchise" icon="microsoft-office" tag="a" href="/franchise"></b-menu-item>
                         <b-menu-item label="QR Scanner" icon="qrcode-scan" tag="a" href="/qr-scanner"></b-menu-item> -->

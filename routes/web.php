@@ -62,6 +62,9 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/inventories', App\Http\Controllers\Administrator\InventoryController::class);
     Route::get('/get-inventories', [App\Http\Controllers\Administrator\InventoryController::class, 'getData']);
 
+    Route::resource('/inventory-adjustment', App\Http\Controllers\Administrator\InventoryAdjustmentController::class);
+    Route::get('/get-inventory-adjustments', [App\Http\Controllers\Administrator\InventoryAdjustmentController::class, 'getData']);
+
 
     Route::resource('/pos', App\Http\Controllers\Administrator\PointOfSaleController::class);
     Route::get('/get-pos', [App\Http\Controllers\Administrator\PointOfSaleController::class, 'getData']);
