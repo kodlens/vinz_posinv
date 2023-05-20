@@ -7594,7 +7594,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      todaySales: 0,
+      rangeDateSales: 0
+    };
+  },
+  methods: {
+    loadTodaySales: function loadTodaySales() {
+      var _this = this;
+
+      axios.get('/load-today-sales').then(function (res) {
+        _this.todaySales = res.data[0].today_sales;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.loadTodaySales();
+  }
+});
 
 /***/ }),
 
@@ -8093,6 +8141,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['propId', 'propData'],
   data: function data() {
@@ -8192,8 +8241,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
 //
 //
 //
@@ -9217,6 +9264,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['propId', 'propData'],
   data: function data() {
@@ -9304,7 +9367,9 @@ __webpack_require__.r(__webpack_exports__);
         item_id: 0,
         item_name: '',
         qty: 0,
-        price: 0
+        price: 0,
+        remarks: '',
+        serials: []
       });
     },
     remove: function remove(ix) {
@@ -9336,6 +9401,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
 //
 //
 //
@@ -11275,6 +11342,25 @@ Vue.filter('formatToCurrency', function (value) {
   var n = parseFloat(value).toFixed(2);
   return Number(n).toLocaleString('en');
 });
+
+Vue.prototype.$formatDate = function (value) {
+  if (!value) return '';
+  var date = new Date(value);
+  var year = date.getFullYear();
+  var month = String(date.getMonth() + 1).padStart(2, '0');
+  var day = String(date.getDate()).padStart(2, '0');
+  return "".concat(year, "-").concat(month, "-").concat(day);
+};
+
+Vue.prototype.$formatTime = function (value) {
+  var timeString = value;
+  var H = +timeString.substr(0, 2);
+  var h = H % 12 || 12;
+  var ampm = H < 12 ? " AM" : " PM";
+  timeString = h + timeString.substr(2, 3) + ampm;
+  return timeString;
+};
+
 var app = new Vue({
   el: '#app'
 });
@@ -29531,7 +29617,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n /* .hero{\n    background-image: url(\"/img/bg-hero.jpg\");\n    background-repeat: no-repeat;\n    background-size: cover;\n}  */\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.sales-no{\n\t\tfont-weight: bold;\n\t\tfont-size: 5em;\n\t\ttext-align: center;\n}\n /* .hero{\n    background-image: url(\"/img/bg-hero.jpg\");\n    background-repeat: no-repeat;\n    background-size: cover;\n}  */\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -29603,7 +29689,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.box-header[data-v-f81b7254]{\n    font-weight: bold;\n    font-size: 1.3em;\n    margin: 10px 0;\n    padding: 10px 0;\n    border-bottom: 1px solid gray;\n}\n.total[data-v-f81b7254]{\n    font-weight: bolder;\n    font-size: 2em;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.total[data-v-f81b7254]{\n    font-weight: bolder;\n    font-size: 2em;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -29675,7 +29761,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card-width[data-v-4f01a62c]{\r\n    width: 640px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card-width[data-v-4f01a62c]{\n    width: 640px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31935,20 +32021,51 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "hero is-fullheight" }, [
-        _c("div", { staticClass: "hero-head" }),
+  return _c("div", [
+    _c("div", { staticClass: "section" }, [
+      _c("div", { staticClass: "columns is-centered" }, [
+        _c("div", { staticClass: "column is-8" }, [
+          _c("div", { staticClass: "columns" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("div", { staticClass: "box" }, [
+                _c("div", { staticClass: "box-header" }, [
+                  _vm._v("\n\t\t\t\t\t\t\t\tTODAY SALES\n\t\t\t\t\t\t\t"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "sales-no" }, [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t\t\t" +
+                      _vm._s(_vm._f("formatToCurrency")(_vm.todaySales)) +
+                      "\n\t\t\t\t\t\t\t"
+                  ),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [
+              _c("div", { staticClass: "box" }, [
+                _c("div", { staticClass: "box-header" }, [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t\t\tSALES (DATE RANGE)\n\t\t\t\t\t\t\t"
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "sales-no" }, [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t\t\t" +
+                      _vm._s(_vm.rangeDateSales) +
+                      "\n\t\t\t\t\t\t\t"
+                  ),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]),
       ]),
-    ])
-  },
-]
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -34441,263 +34558,363 @@ var render = function () {
   return _c("div", [
     _c("div", { staticClass: "section" }, [
       _c("div", { staticClass: "columns is-centered" }, [
-        _c("div", { staticClass: "column is-10-desktop is-12-tablet" }, [
-          _c(
-            "form",
-            {
-              on: {
-                submit: function ($event) {
-                  $event.preventDefault()
-                  return _vm.submit.apply(null, arguments)
+        _c(
+          "div",
+          { staticClass: "column is-6-widescreen is-10-desktop is-12-tablet" },
+          [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.submit.apply(null, arguments)
+                  },
                 },
               },
-            },
-            [
-              _c(
-                "div",
-                { staticClass: "box" },
-                [
-                  _c("div", { staticClass: "box-header" }, [
-                    _vm._v(
-                      "\n                            POINT OF SALE\n                        "
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "columns" }, [
-                    _c(
-                      "div",
-                      { staticClass: "column" },
-                      [
-                        _c(
-                          "b-field",
-                          { attrs: { label: "Customer Name" } },
-                          [
-                            _c("b-input", {
-                              attrs: {
-                                type: "text",
-                                placeholder: "Customer Name",
-                              },
-                              model: {
-                                value: _vm.fields.customer,
-                                callback: function ($$v) {
-                                  _vm.$set(_vm.fields, "customer", $$v)
-                                },
-                                expression: "fields.customer",
-                              },
-                            }),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
+              [
+                _c(
+                  "div",
+                  { staticClass: "box" },
+                  [
+                    _c("div", { staticClass: "box-header" }, [
+                      _vm._v(
+                        "\n                            POINT OF SALE\n                        "
+                      ),
+                    ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "column is-4" },
-                      [
-                        _c(
-                          "b-field",
-                          { attrs: { label: "Sales Date" } },
-                          [
-                            _c("b-datepicker", {
-                              attrs: { placeholder: "Stock In Date" },
-                              model: {
-                                value: _vm.fields.sales_date,
-                                callback: function ($$v) {
-                                  _vm.$set(_vm.fields, "sales_date", $$v)
+                    _c("div", { staticClass: "columns" }, [
+                      _c(
+                        "div",
+                        { staticClass: "column" },
+                        [
+                          _c(
+                            "b-field",
+                            { attrs: { label: "Customer Name" } },
+                            [
+                              _c("b-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Customer Name",
                                 },
-                                expression: "fields.sales_date",
-                              },
-                            }),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "columns" }, [
-                    _c("div", { staticClass: "column" }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "column is-3" }, [
-                      _c("div", [
-                        _c("span", { staticClass: "total" }, [
-                          _vm._v(
-                            "Total: " +
-                              _vm._s(_vm._f("formatToCurrency")(_vm.totalPrice))
+                                model: {
+                                  value: _vm.fields.customer,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.fields, "customer", $$v)
+                                  },
+                                  expression: "fields.customer",
+                                },
+                              }),
+                            ],
+                            1
                           ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "column is-4" },
+                        [
+                          _c(
+                            "b-field",
+                            { attrs: { label: "Sales Date" } },
+                            [
+                              _c("b-datepicker", {
+                                attrs: { placeholder: "Stock In Date" },
+                                model: {
+                                  value: _vm.fields.sales_date,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.fields, "sales_date", $$v)
+                                  },
+                                  expression: "fields.sales_date",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "columns" }, [
+                      _c("div", { staticClass: "column" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "column is-3" }, [
+                        _c("div", [
+                          _c("span", { staticClass: "total" }, [
+                            _vm._v(
+                              "Total: " +
+                                _vm._s(
+                                  _vm._f("formatToCurrency")(_vm.totalPrice)
+                                )
+                            ),
+                          ]),
                         ]),
                       ]),
                     ]),
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.fields.orders, function (item, index) {
-                    return _c("div", { key: index }, [
-                      _c("div", { staticClass: "columns" }, [
-                        _c(
-                          "div",
-                          { staticClass: "column" },
-                          [
+                    _vm._v(" "),
+                    _vm._l(_vm.fields.orders, function (item, index) {
+                      return _c(
+                        "div",
+                        { key: index },
+                        [
+                          _c("div", { staticClass: "columns" }, [
                             _c(
-                              "b-field",
-                              {
-                                attrs: {
-                                  label: "Browse Item",
-                                  "label-position": "on-border",
-                                },
-                              },
+                              "div",
+                              { staticClass: "column" },
                               [
-                                _c("modal-pos-browse-item", {
+                                _c(
+                                  "b-field",
+                                  {
+                                    attrs: {
+                                      label: "Browse Item",
+                                      "label-position": "on-border",
+                                    },
+                                  },
+                                  [
+                                    _c("modal-pos-browse-item", {
+                                      attrs: {
+                                        "prop-item":
+                                          _vm.fields.orders[index].item_name,
+                                      },
+                                      on: {
+                                        browseItem: function ($event) {
+                                          return _vm.emitBrowseItem(
+                                            $event,
+                                            index
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ],
+                                  1
+                                ),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "column is-2" },
+                              [
+                                _c(
+                                  "b-field",
+                                  {
+                                    attrs: {
+                                      label: "Quantity",
+                                      "label-position": "on-border",
+                                    },
+                                  },
+                                  [
+                                    _c("b-numberinput", {
+                                      attrs: {
+                                        "controls-alignment": "right",
+                                        min: "0",
+                                        controls: false,
+                                        expanded: "",
+                                        placeholder: "Quantity",
+                                        "controls-position": "compact",
+                                      },
+                                      model: {
+                                        value: _vm.fields.orders[index].qty,
+                                        callback: function ($$v) {
+                                          _vm.$set(
+                                            _vm.fields.orders[index],
+                                            "qty",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "fields.orders[index].qty",
+                                      },
+                                    }),
+                                  ],
+                                  1
+                                ),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "column is-3" },
+                              [
+                                _c(
+                                  "b-field",
+                                  {
+                                    attrs: {
+                                      label: "Price Each",
+                                      "label-position": "on-border",
+                                    },
+                                  },
+                                  [
+                                    _c("b-numberinput", {
+                                      attrs: {
+                                        expanded: "",
+                                        "controls-position": "compact",
+                                        "controls-alignment": "right",
+                                        controls: false,
+                                        min: "0",
+                                        placeholder: "Price Each",
+                                        step: "0.01",
+                                      },
+                                      model: {
+                                        value: _vm.fields.orders[index].price,
+                                        callback: function ($$v) {
+                                          _vm.$set(
+                                            _vm.fields.orders[index],
+                                            "price",
+                                            $$v
+                                          )
+                                        },
+                                        expression:
+                                          "fields.orders[index].price",
+                                      },
+                                    }),
+                                  ],
+                                  1
+                                ),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "column is-1" },
+                              [
+                                _c("b-button", {
                                   attrs: {
-                                    "prop-item":
-                                      _vm.fields.orders[index].item_name,
+                                    "icon-left": "delete-outline",
+                                    type: "is-danger",
                                   },
                                   on: {
-                                    browseItem: function ($event) {
-                                      return _vm.emitBrowseItem($event, index)
+                                    click: function ($event) {
+                                      return _vm.remove(index)
                                     },
                                   },
                                 }),
                               ],
                               1
                             ),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "column is-2" },
-                          [
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "columns" }, [
                             _c(
-                              "b-field",
-                              {
-                                attrs: {
-                                  label: "Quantity",
-                                  "label-position": "on-border",
-                                },
-                              },
+                              "div",
+                              { staticClass: "column" },
                               [
-                                _c("b-numberinput", {
-                                  attrs: {
-                                    "controls-alignment": "right",
-                                    min: "0",
-                                    controls: false,
-                                    expanded: "",
-                                    placeholder: "Quantity",
-                                    "controls-position": "compact",
-                                  },
-                                  model: {
-                                    value: _vm.fields.orders[index].qty,
-                                    callback: function ($$v) {
-                                      _vm.$set(
-                                        _vm.fields.orders[index],
-                                        "qty",
-                                        $$v
-                                      )
+                                _c(
+                                  "b-field",
+                                  {
+                                    attrs: {
+                                      label: "Remarks",
+                                      "label-position": "on-border",
                                     },
-                                    expression: "fields.orders[index].qty",
                                   },
-                                }),
+                                  [
+                                    _c("b-input", {
+                                      attrs: { type: "textarea" },
+                                      model: {
+                                        value: _vm.fields.orders[index].remarks,
+                                        callback: function ($$v) {
+                                          _vm.$set(
+                                            _vm.fields.orders[index],
+                                            "remarks",
+                                            $$v
+                                          )
+                                        },
+                                        expression:
+                                          "fields.orders[index].remarks",
+                                      },
+                                    }),
+                                  ],
+                                  1
+                                ),
                               ],
                               1
                             ),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "column is-3" },
-                          [
-                            _c(
-                              "b-field",
-                              {
-                                attrs: {
-                                  label: "Price Each",
-                                  "label-position": "on-border",
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(
+                            _vm.fields.orders[index].qty,
+                            function (i, ix) {
+                              return _c(
+                                "div",
+                                {
+                                  key: "qty" + ix,
+                                  staticStyle: { margin: "10px 0 0 50px" },
                                 },
-                              },
-                              [
-                                _c("b-numberinput", {
-                                  attrs: {
-                                    expanded: "",
-                                    "controls-position": "compact",
-                                    "controls-alignment": "right",
-                                    controls: false,
-                                    min: "0",
-                                    placeholder: "Price Each",
-                                    step: "0.01",
-                                  },
-                                  model: {
-                                    value: _vm.fields.orders[index].price,
-                                    callback: function ($$v) {
-                                      _vm.$set(
-                                        _vm.fields.orders[index],
-                                        "price",
-                                        $$v
-                                      )
+                                [
+                                  _c(
+                                    "b-field",
+                                    {
+                                      attrs: {
+                                        label: "Serial No.",
+                                        "label-position": "on-border",
+                                      },
                                     },
-                                    expression: "fields.orders[index].price",
-                                  },
-                                }),
-                              ],
-                              1
-                            ),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "column is-1" },
-                          [
-                            _c("b-button", {
-                              attrs: {
-                                "icon-left": "delete-outline",
-                                type: "is-danger",
-                              },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.remove(index)
-                                },
-                              },
-                            }),
-                          ],
-                          1
-                        ),
-                      ]),
-                    ])
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "buttons mt-3" },
-                    [
-                      _c("b-button", {
-                        staticClass: "is-outlined is-small",
-                        attrs: {
-                          type: "is-primary",
-                          "icon-left": "plus",
-                          label: "New",
-                        },
-                        on: { click: _vm.addRow },
-                      }),
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._m(0),
-                ],
-                2
-              ),
-            ]
-          ),
-        ]),
+                                    [
+                                      _c("b-input", {
+                                        attrs: { type: "text" },
+                                        model: {
+                                          value:
+                                            _vm.fields.orders[index].serials[
+                                              ix
+                                            ],
+                                          callback: function ($$v) {
+                                            _vm.$set(
+                                              _vm.fields.orders[index].serials,
+                                              ix,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "fields.orders[index].serials[ix]",
+                                        },
+                                      }),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              )
+                            }
+                          ),
+                          _vm._v(" "),
+                          _c("hr"),
+                        ],
+                        2
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "buttons mt-3" },
+                      [
+                        _c("b-button", {
+                          staticClass: "is-outlined is-small",
+                          attrs: {
+                            type: "is-primary",
+                            "icon-left": "plus",
+                            label: "New",
+                          },
+                          on: { click: _vm.addRow },
+                        }),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm._m(0),
+                  ],
+                  2
+                ),
+              ]
+            ),
+          ]
+        ),
       ]),
     ]),
   ])
@@ -34744,494 +34961,522 @@ var render = function () {
   return _c("div", [
     _c("div", { staticClass: "section" }, [
       _c("div", { staticClass: "columns is-centered" }, [
-        _c("div", { staticClass: "column is-8-desktop is-10-tablet" }, [
-          _c(
-            "div",
-            { staticClass: "box" },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "is-flex is-justify-content-center mb-2",
-                  staticStyle: { "font-size": "20px", "font-weight": "bold" },
-                },
-                [_vm._v("SALES")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "columns" }, [
-                _c(
-                  "div",
-                  { staticClass: "column" },
-                  [
-                    _c(
-                      "b-field",
-                      {
-                        attrs: { label: "Page", "label-position": "on-border" },
-                      },
-                      [
-                        _c(
-                          "b-select",
-                          {
-                            on: { input: _vm.setPerPage },
-                            model: {
-                              value: _vm.perPage,
-                              callback: function ($$v) {
-                                _vm.perPage = $$v
-                              },
-                              expression: "perPage",
-                            },
-                          },
-                          [
-                            _c("option", { attrs: { value: "5" } }, [
-                              _vm._v("5 per page"),
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "10" } }, [
-                              _vm._v("10 per page"),
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "15" } }, [
-                              _vm._v("15 per page"),
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "20" } }, [
-                              _vm._v("20 per page"),
-                            ]),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-select",
-                          {
-                            on: { input: _vm.loadAsyncData },
-                            model: {
-                              value: _vm.sortOrder,
-                              callback: function ($$v) {
-                                _vm.sortOrder = $$v
-                              },
-                              expression: "sortOrder",
-                            },
-                          },
-                          [
-                            _c("option", { attrs: { value: "asc" } }, [
-                              _vm._v("ASC"),
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "desc" } }, [
-                              _vm._v("DESC"),
-                            ]),
-                          ]
-                        ),
-                      ],
-                      1
-                    ),
-                  ],
-                  1
-                ),
+        _c(
+          "div",
+          { staticClass: "column is-8-desktop is-6-widescreen is-10-tablet" },
+          [
+            _c(
+              "div",
+              { staticClass: "box" },
+              [
+                _c("div", { staticClass: "box-header" }, [
+                  _vm._v(
+                    "\n                        SALES\n                    "
+                  ),
+                ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "column" },
-                  [
-                    _c(
-                      "b-field",
-                      {
-                        attrs: {
-                          label: "Item Name",
-                          expanded: "",
-                          "label-position": "on-border",
-                        },
-                      },
-                      [
-                        _c("b-input", {
-                          attrs: {
-                            type: "text",
-                            expanded: "",
-                            placeholder: "Search Item Name",
-                          },
-                          nativeOn: {
-                            keyup: function ($event) {
-                              if (
-                                !$event.type.indexOf("key") &&
-                                _vm._k(
-                                  $event.keyCode,
-                                  "enter",
-                                  13,
-                                  $event.key,
-                                  "Enter"
-                                )
-                              ) {
-                                return null
-                              }
-                              return _vm.loadAsyncData.apply(null, arguments)
-                            },
-                          },
-                          model: {
-                            value: _vm.search.item_name,
-                            callback: function ($$v) {
-                              _vm.$set(_vm.search, "item_name", $$v)
-                            },
-                            expression: "search.item_name",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "p",
-                          { staticClass: "control" },
-                          [
-                            _c(
-                              "b-tooltip",
-                              {
-                                attrs: { label: "Search", type: "is-success" },
-                              },
-                              [
-                                _c("b-button", {
-                                  attrs: {
-                                    type: "is-primary",
-                                    "icon-right": "account-filter",
-                                  },
-                                  on: { click: _vm.loadAsyncData },
-                                }),
-                              ],
-                              1
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                  ],
-                  1
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "columns" }, [
-                _c(
-                  "div",
-                  { staticClass: "column" },
-                  [
-                    _c(
-                      "b-field",
-                      {
-                        attrs: {
-                          label: "Barcode",
-                          "label-position": "on-border",
-                        },
-                      },
-                      [
-                        _c("b-input", {
-                          attrs: {
-                            type: "text",
-                            expanded: "",
-                            placeholder: "Search Barcode",
-                          },
-                          nativeOn: {
-                            keyup: function ($event) {
-                              if (
-                                !$event.type.indexOf("key") &&
-                                _vm._k(
-                                  $event.keyCode,
-                                  "enter",
-                                  13,
-                                  $event.key,
-                                  "Enter"
-                                )
-                              ) {
-                                return null
-                              }
-                              return _vm.loadAsyncData.apply(null, arguments)
-                            },
-                          },
-                          model: {
-                            value: _vm.search.barcode,
-                            callback: function ($$v) {
-                              _vm.$set(_vm.search, "barcode", $$v)
-                            },
-                            expression: "search.barcode",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "p",
-                          { staticClass: "control" },
-                          [
-                            _c(
-                              "b-tooltip",
-                              {
-                                attrs: { label: "Search", type: "is-success" },
-                              },
-                              [
-                                _c("b-button", {
-                                  attrs: {
-                                    type: "is-primary",
-                                    "icon-right": "account-filter",
-                                  },
-                                  on: { click: _vm.loadAsyncData },
-                                }),
-                              ],
-                              1
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                  ],
-                  1
-                ),
+                _c("b-field", { attrs: { label: "FIlters" } }),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "column" },
-                  [
-                    _c(
-                      "b-field",
-                      {
-                        attrs: {
-                          label: "Serial",
-                          "label-position": "on-border",
-                        },
-                      },
-                      [
-                        _c("b-input", {
+                _c("div", { staticClass: "columns" }, [
+                  _c(
+                    "div",
+                    { staticClass: "column" },
+                    [
+                      _c(
+                        "b-field",
+                        {
                           attrs: {
-                            type: "text",
-                            expanded: "",
-                            placeholder: "Search Serial",
+                            label: "Page",
+                            "label-position": "on-border",
                           },
-                          nativeOn: {
-                            keyup: function ($event) {
-                              if (
-                                !$event.type.indexOf("key") &&
-                                _vm._k(
-                                  $event.keyCode,
-                                  "enter",
-                                  13,
-                                  $event.key,
-                                  "Enter"
-                                )
-                              ) {
-                                return null
-                              }
-                              return _vm.loadAsyncData.apply(null, arguments)
-                            },
-                          },
-                          model: {
-                            value: _vm.search.serial,
-                            callback: function ($$v) {
-                              _vm.$set(_vm.search, "serial", $$v)
-                            },
-                            expression: "search.serial",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "p",
-                          { staticClass: "control" },
-                          [
-                            _c(
-                              "b-tooltip",
-                              {
-                                attrs: { label: "Search", type: "is-success" },
-                              },
-                              [
-                                _c("b-button", {
-                                  attrs: {
-                                    type: "is-primary",
-                                    "icon-right": "account-filter",
-                                  },
-                                  on: { click: _vm.loadAsyncData },
-                                }),
-                              ],
-                              1
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                  ],
-                  1
-                ),
-              ]),
-              _vm._v(" "),
-              _c(
-                "b-table",
-                {
-                  attrs: {
-                    data: _vm.data,
-                    loading: _vm.loading,
-                    paginated: "",
-                    detailed: "",
-                    "backend-pagination": "",
-                    total: _vm.total,
-                    "per-page": _vm.perPage,
-                    "aria-next-label": "Next page",
-                    "aria-previous-label": "Previous page",
-                    "aria-page-label": "Page",
-                    "aria-current-label": "Current page",
-                    "backend-sorting": "",
-                    "default-sort-direction": _vm.defaultSortDirection,
-                  },
-                  on: { "page-change": _vm.onPageChange, sort: _vm.onSort },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "detail",
-                      fn: function (props) {
-                        return [
+                        },
+                        [
                           _c(
-                            "table",
-                            { staticClass: "is-fullwidth" },
+                            "b-select",
+                            {
+                              on: { input: _vm.setPerPage },
+                              model: {
+                                value: _vm.perPage,
+                                callback: function ($$v) {
+                                  _vm.perPage = $$v
+                                },
+                                expression: "perPage",
+                              },
+                            },
                             [
-                              _c("tr", [
-                                _c("th", [_vm._v("Item Name")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Quantity")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Price")]),
+                              _c("option", { attrs: { value: "5" } }, [
+                                _vm._v("5 per page"),
                               ]),
                               _vm._v(" "),
-                              _vm._l(props.row.sales_details, function (item) {
-                                return _c("tr", { key: item.sales_detail_id }, [
-                                  _c("td", [_vm._v(_vm._s(item.item_name))]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "td",
-                                    { staticClass: "has-text-centered" },
-                                    [_vm._v(_vm._s(item.qty))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "td",
-                                    { staticClass: "has-text-centered" },
-                                    [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm._f("formatToCurrency")(item.price)
-                                        )
-                                      ),
-                                    ]
-                                  ),
-                                ])
-                              }),
-                            ],
-                            2
+                              _c("option", { attrs: { value: "10" } }, [
+                                _vm._v("10 per page"),
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "15" } }, [
+                                _vm._v("15 per page"),
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "20" } }, [
+                                _vm._v("20 per page"),
+                              ]),
+                            ]
                           ),
-                        ]
-                      },
-                    },
-                  ]),
-                },
-                [
-                  _c("b-table-column", {
-                    attrs: { field: "sales_id", label: "ID" },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "default",
-                        fn: function (props) {
-                          return [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(props.row.sales_id) +
-                                "\n                        "
-                            ),
-                          ]
-                        },
-                      },
-                    ]),
-                  }),
-                  _vm._v(" "),
-                  _c("b-table-column", {
-                    attrs: { field: "sales_date", label: "Sales Date" },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "default",
-                        fn: function (props) {
-                          return [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(
-                                  _vm._f("formatDateTime")(props.row.sales_date)
-                                ) +
-                                "\n                        "
-                            ),
-                          ]
-                        },
-                      },
-                    ]),
-                  }),
-                  _vm._v(" "),
-                  _c("b-table-column", {
-                    attrs: { field: "sales", label: "Sales" },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "default",
-                        fn: function (props) {
-                          return [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(
-                                  _vm._f("formatToCurrency")(
-                                    props.row.total_sales
-                                  )
-                                ) +
-                                "\n                        "
-                            ),
-                          ]
-                        },
-                      },
-                    ]),
-                  }),
-                  _vm._v(" "),
-                  _c("b-table-column", {
-                    attrs: { field: "sys_user", label: "User" },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "default",
-                        fn: function (props) {
-                          return [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(props.row.user.lname) +
-                                ", " +
-                                _vm._s(props.row.user.fname) +
-                                "\n                        "
-                            ),
-                          ]
-                        },
-                      },
-                    ]),
-                  }),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "buttons mt-3" },
-                [
-                  _c(
-                    "b-button",
-                    {
-                      staticClass: "is-success",
-                      attrs: {
-                        tag: "a",
-                        href: "/stock-in/create",
-                        "icon-right": "account-arrow-up-outline",
-                      },
-                    },
-                    [_vm._v("NEW")]
+                          _vm._v(" "),
+                          _c(
+                            "b-select",
+                            {
+                              on: { input: _vm.loadAsyncData },
+                              model: {
+                                value: _vm.sortOrder,
+                                callback: function ($$v) {
+                                  _vm.sortOrder = $$v
+                                },
+                                expression: "sortOrder",
+                              },
+                            },
+                            [
+                              _c("option", { attrs: { value: "asc" } }, [
+                                _vm._v("ASC"),
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "desc" } }, [
+                                _vm._v("DESC"),
+                              ]),
+                            ]
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
                   ),
-                ],
-                1
-              ),
-            ],
-            1
-          ),
-        ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "column" },
+                    [
+                      _c(
+                        "b-field",
+                        {
+                          attrs: {
+                            label: "Item Name",
+                            expanded: "",
+                            "label-position": "on-border",
+                          },
+                        },
+                        [
+                          _c("b-input", {
+                            attrs: {
+                              type: "text",
+                              expanded: "",
+                              placeholder: "Search Item Name",
+                            },
+                            nativeOn: {
+                              keyup: function ($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                return _vm.loadAsyncData.apply(null, arguments)
+                              },
+                            },
+                            model: {
+                              value: _vm.search.item_name,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.search, "item_name", $$v)
+                              },
+                              expression: "search.item_name",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            { staticClass: "control" },
+                            [
+                              _c(
+                                "b-tooltip",
+                                {
+                                  attrs: {
+                                    label: "Search",
+                                    type: "is-success",
+                                  },
+                                },
+                                [
+                                  _c("b-button", {
+                                    attrs: {
+                                      type: "is-primary",
+                                      "icon-right": "account-filter",
+                                    },
+                                    on: { click: _vm.loadAsyncData },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "columns" }, [
+                  _c(
+                    "div",
+                    { staticClass: "column" },
+                    [
+                      _c(
+                        "b-field",
+                        {
+                          attrs: {
+                            label: "Barcode",
+                            "label-position": "on-border",
+                          },
+                        },
+                        [
+                          _c("b-input", {
+                            attrs: {
+                              type: "text",
+                              expanded: "",
+                              placeholder: "Search Barcode",
+                            },
+                            nativeOn: {
+                              keyup: function ($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                return _vm.loadAsyncData.apply(null, arguments)
+                              },
+                            },
+                            model: {
+                              value: _vm.search.barcode,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.search, "barcode", $$v)
+                              },
+                              expression: "search.barcode",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            { staticClass: "control" },
+                            [
+                              _c(
+                                "b-tooltip",
+                                {
+                                  attrs: {
+                                    label: "Search",
+                                    type: "is-success",
+                                  },
+                                },
+                                [
+                                  _c("b-button", {
+                                    attrs: {
+                                      type: "is-primary",
+                                      "icon-right": "account-filter",
+                                    },
+                                    on: { click: _vm.loadAsyncData },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "column" },
+                    [
+                      _c(
+                        "b-field",
+                        {
+                          attrs: {
+                            label: "Serial",
+                            "label-position": "on-border",
+                          },
+                        },
+                        [
+                          _c("b-input", {
+                            attrs: {
+                              type: "text",
+                              expanded: "",
+                              placeholder: "Search Serial",
+                            },
+                            nativeOn: {
+                              keyup: function ($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                return _vm.loadAsyncData.apply(null, arguments)
+                              },
+                            },
+                            model: {
+                              value: _vm.search.serial,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.search, "serial", $$v)
+                              },
+                              expression: "search.serial",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            { staticClass: "control" },
+                            [
+                              _c(
+                                "b-tooltip",
+                                {
+                                  attrs: {
+                                    label: "Search",
+                                    type: "is-success",
+                                  },
+                                },
+                                [
+                                  _c("b-button", {
+                                    attrs: {
+                                      type: "is-primary",
+                                      "icon-right": "account-filter",
+                                    },
+                                    on: { click: _vm.loadAsyncData },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "b-table",
+                  {
+                    attrs: {
+                      data: _vm.data,
+                      loading: _vm.loading,
+                      paginated: "",
+                      detailed: "",
+                      "backend-pagination": "",
+                      total: _vm.total,
+                      "per-page": _vm.perPage,
+                      "aria-next-label": "Next page",
+                      "aria-previous-label": "Previous page",
+                      "aria-page-label": "Page",
+                      "aria-current-label": "Current page",
+                      "backend-sorting": "",
+                      "default-sort-direction": _vm.defaultSortDirection,
+                    },
+                    on: { "page-change": _vm.onPageChange, sort: _vm.onSort },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "detail",
+                        fn: function (props) {
+                          return [
+                            _c(
+                              "table",
+                              { staticClass: "is-fullwidth" },
+                              [
+                                _c("tr", [
+                                  _c("th", [_vm._v("Item Name")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Quantity")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Price")]),
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(
+                                  props.row.sales_details,
+                                  function (item) {
+                                    return _c(
+                                      "tr",
+                                      { key: item.sales_detail_id },
+                                      [
+                                        _c("td", [
+                                          _vm._v(_vm._s(item.item_name)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "has-text-centered" },
+                                          [_vm._v(_vm._s(item.qty))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "has-text-centered" },
+                                          [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm._f("formatToCurrency")(
+                                                  item.price
+                                                )
+                                              )
+                                            ),
+                                          ]
+                                        ),
+                                      ]
+                                    )
+                                  }
+                                ),
+                              ],
+                              2
+                            ),
+                          ]
+                        },
+                      },
+                    ]),
+                  },
+                  [
+                    _c("b-table-column", {
+                      attrs: { field: "sales_id", label: "ID" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function (props) {
+                            return [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(props.row.sales_id) +
+                                  "\n                        "
+                              ),
+                            ]
+                          },
+                        },
+                      ]),
+                    }),
+                    _vm._v(" "),
+                    _c("b-table-column", {
+                      attrs: { field: "sales_date", label: "Sales Date" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function (props) {
+                            return [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(
+                                    _vm._f("formatDateTime")(
+                                      props.row.sales_date
+                                    )
+                                  ) +
+                                  "\n                        "
+                              ),
+                            ]
+                          },
+                        },
+                      ]),
+                    }),
+                    _vm._v(" "),
+                    _c("b-table-column", {
+                      attrs: { field: "sales", label: "Sales" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function (props) {
+                            return [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(
+                                    _vm._f("formatToCurrency")(
+                                      props.row.total_sales
+                                    )
+                                  ) +
+                                  "\n                        "
+                              ),
+                            ]
+                          },
+                        },
+                      ]),
+                    }),
+                    _vm._v(" "),
+                    _c("b-table-column", {
+                      attrs: { field: "sys_user", label: "User" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function (props) {
+                            return [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(props.row.user.lname) +
+                                  ", " +
+                                  _vm._s(props.row.user.fname) +
+                                  "\n                        "
+                              ),
+                            ]
+                          },
+                        },
+                      ]),
+                    }),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "buttons mt-3" },
+                  [
+                    _c(
+                      "b-button",
+                      {
+                        staticClass: "is-success",
+                        attrs: {
+                          tag: "a",
+                          href: "/stock-in/create",
+                          "icon-right": "account-arrow-up-outline",
+                        },
+                      },
+                      [_vm._v("NEW")]
+                    ),
+                  ],
+                  1
+                ),
+              ],
+              1
+            ),
+          ]
+        ),
       ]),
     ]),
   ])

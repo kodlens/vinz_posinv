@@ -83,6 +83,31 @@ Vue.filter('formatToCurrency', function(value) {
 });
 
 
+
+
+Vue.prototype.$formatDate = function(value) {
+    if (!value) return '';
+    
+    const date = new Date(value);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
+
+Vue.prototype.$formatTime = function(value) {
+    var timeString = value;
+    var H = +timeString.substr(0, 2);
+    var h = (H % 12) || 12;
+    var ampm = H < 12 ? " AM" : " PM";
+    timeString = h + timeString.substr(2, 3) + ampm;
+    return timeString;
+};
+
+
+
+
+
 const app = new Vue({
     el: '#app',
 });

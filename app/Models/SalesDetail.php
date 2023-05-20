@@ -14,7 +14,7 @@ class SalesDetail extends Model
     protected $primaryKey = 'sales_detail_id';
     protected $fillable = [
         'sales_id', 'item_id', 'item_name',
-        'qty', 'price'
+        'qty', 'remarks', 'price'
     ];
 
 

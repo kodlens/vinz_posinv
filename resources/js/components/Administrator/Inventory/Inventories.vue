@@ -66,9 +66,7 @@
                             <b-table-column field="qty" label="Quantity" v-slot="props">
                                 {{ props.row.qty }}
                             </b-table-column>
-
                             
-
                             <!-- <b-table-column label="Action" v-slot="props">
                                 <div class="is-flex">
                                     <b-tooltip label="Edit" type="is-warning">

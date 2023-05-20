@@ -5,6 +5,7 @@
                 <div class="column is-6-desktop is-8-tablet">
                     <form @submit.prevent="submit">
                         <div class="box">
+                            
                             <div class="box-header">
                                 CREATE INVENTORY ADJUSTMENT
                             </div>

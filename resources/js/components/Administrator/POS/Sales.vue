@@ -2,11 +2,13 @@
     <div>
         <div class="section">
             <div class="columns is-centered">
-                <div class="column is-8-desktop is-10-tablet">
+                <div class="column is-8-desktop is-6-widescreen is-10-tablet">
                     <div class="box">
 
-                        <div class="is-flex is-justify-content-center mb-2" style="font-size: 20px; font-weight: bold;">SALES</div>
-
+                        <div class="box-header">
+                            SALES
+                        </div>
+                       <b-field label="FIlters"></b-field>
                         <div class="columns">
                             <div class="column">
                                 <b-field label="Page" label-position="on-border">

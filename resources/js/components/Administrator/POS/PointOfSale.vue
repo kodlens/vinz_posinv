@@ -2,7 +2,7 @@
     <div>
         <div class="section">
             <div class="columns is-centered">
-                <div class="column is-10-desktop is-12-tablet">
+                <div class="column is-6-widescreen is-10-desktop is-12-tablet">
                     <form @submit.prevent="submit">
                         <div class="box">
                             <div class="box-header">
@@ -71,6 +71,22 @@
                                             type="is-danger"></b-button>
                                     </div>
                                 </div> <!--cols -->
+                                <div class="columns">
+                                    <div class="column">
+                                        <b-field label="Remarks" label-position="on-border">
+                                            <b-input type="textarea" v-model="fields.orders[index].remarks"></b-input>
+                                        </b-field>
+                                    </div>
+                                </div>
+
+                                <div style="margin: 10px 0 0 50px;" v-for="(i, ix) in fields.orders[index].qty" :key="`qty${ix}`">
+                                    <b-field label="Serial No." label-position="on-border">
+                                        <b-input type="text" v-model="fields.orders[index].serials[ix]"></b-input>
+                                    </b-field>
+                                </div>
+                                
+
+                                <hr>
                             </div> <!--for -->
 
                             <div class="buttons mt-3">
@@ -196,6 +212,8 @@ export default{
                 item_name: '',
                 qty: 0,
                 price: 0,
+                remarks: '',
+                serials: []
             });
         },
 
@@ -226,13 +244,7 @@ export default{
 
 
 <style scoped>
-    .box-header{
-        font-weight: bold;
-        font-size: 1.3em;
-        margin: 10px 0;
-        padding: 10px 0;
-        border-bottom: 1px solid gray;
-    }
+    
 
     .total{
         font-weight: bolder;

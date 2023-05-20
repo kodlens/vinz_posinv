@@ -39,7 +39,6 @@ class InventoryAdjustmentController extends Controller
 
         //return $req;
 
-
         $req->validate([
             'item_id' => ['required'],
             'adjustment' => ['required'],
@@ -53,9 +52,19 @@ class InventoryAdjustmentController extends Controller
 
         
 
-        $inv = Inventory::where('item_id', $req->item_id)
-            ->first();
-        $curQty = $inv->qty;
+        $inv = Inventory::where('item_id', $req->item_id);
+
+        //check if item is in inventory
+        //if not found, insert the item in inventories table
+        if($inv->exists()){
+            $inv = $inv->first();
+            $curQty = $inv->qty;
+        }else{
+            //not found, insert
+            Inventory::create(['item_id' => $req->item_id, 'qty' => 0]);
+            $curQty = 0;
+        }
+       
         InventoryAdjustment::create([
             'item_id' => $itemId,
             'adjustment' => $adjustmentType,
@@ -65,7 +74,7 @@ class InventoryAdjustmentController extends Controller
             'datetime_adjusted' => date('Y-m-d H:i:s')
         ]);
 
-        if($adjustmentType === 'ADD'){
+        if($adjustmentType == 'ADD'){
             Inventory::where('item_id', $itemId)
                 ->increment('qty', $req->adjusted_qty);
         }else{

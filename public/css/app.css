@@ -26645,6 +26645,14 @@ html {
     display: block;
   }
 }
+.box-header {
+  font-weight: bold;
+  font-size: 1.3em;
+  margin: 10px 0 10px 0;
+  padding: 10px 0;
+  border-bottom: 1px solid gray;
+}
+
 /* Bulma Utilities */
 .pagination-previous,
 .pagination-next,
