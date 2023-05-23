@@ -18,8 +18,16 @@ class SalesDetail extends Model
     ];
 
 
+    public function sales(){
+        return $this->belongsTo(Sales::class, 'sales_id', 'sales_id');
+    }
+
     public function item(){
         return $this->hasOne(Item::class, 'item_id', 'item_id');
+    }
+
+    public function serials(){
+        return $this->hasMany(SalesItemSerial::class, 'sales_detail_id', 'sales_detail_id');
     }
 
     

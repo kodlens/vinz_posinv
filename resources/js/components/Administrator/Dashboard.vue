@@ -31,7 +31,6 @@
 
 				</div><!--col-->
 			</div><!--cols-->
-
 		</div> <!--section-->
 
 		
@@ -50,7 +49,7 @@ export default {
 	methods: {
 		loadTodaySales(){
 			axios.get('/load-today-sales').then(res=>{
-				this.todaySales = res.data[0].today_sales
+				this.todaySales = res.data
 			})
 		}
 	},

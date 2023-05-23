@@ -26,6 +26,9 @@ class Sales extends Model
         return $this->hasOne(User::class, 'user_id', 'sys_user_id');
     }
 
+
+   
+
     
 
 }

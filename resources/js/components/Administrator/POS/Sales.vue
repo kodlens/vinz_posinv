@@ -2,13 +2,13 @@
     <div>
         <div class="section">
             <div class="columns is-centered">
-                <div class="column is-8-desktop is-6-widescreen is-10-tablet">
+                <div class="column is-10-desktop is-8-widescreen is-10-tablet">
                     <div class="box">
 
                         <div class="box-header">
                             SALES
                         </div>
-                       <b-field label="FIlters"></b-field>
+                       <b-field label="Filters"></b-field>
                         <div class="columns">
                             <div class="column">
                                 <b-field label="Page" label-position="on-border">
@@ -26,15 +26,19 @@
                             </div>
 
                             <div class="column">
+                                <b-field label="Date Filter" label-position="on-border" expanded>
+                                    <b-datepicker v-model="search.start_date" placeholder="Start date" expanded></b-datepicker>
+                                    <b-datepicker v-model="search.end_date" placeholder="End date" expanded></b-datepicker>
+                                </b-field>
+                            </div>
+                        </div>
+
+                        <div class="columns">
+                            <div class="column">
                                 <b-field label="Item Name" expanded label-position="on-border">
                                     <b-input type="text" expanded
-                                             v-model="search.item_name" placeholder="Search Item Name"
-                                             @keyup.native.enter="loadAsyncData"/>
-                                    <p class="control">
-                                        <b-tooltip label="Search" type="is-success">
-                                            <b-button type="is-primary"  icon-right="account-filter" @click="loadAsyncData"/>
-                                        </b-tooltip>
-                                    </p>
+                                        v-model="search.item_name" placeholder="Search Item Name"
+                                        @keyup.native.enter="loadAsyncData"/>
                                 </b-field>
                             </div>
                         </div>
@@ -43,28 +47,34 @@
                             <div class="column">
                                 <b-field label="Barcode" label-position="on-border">
                                     <b-input type="text" expanded
-                                             v-model="search.barcode" placeholder="Search Barcode"
-                                             @keyup.native.enter="loadAsyncData"/>
-                                    <p class="control">
-                                        <b-tooltip label="Search" type="is-success">
-                                            <b-button type="is-primary" icon-right="account-filter" @click="loadAsyncData"/>
-                                        </b-tooltip>
-                                    </p>
+                                        v-model="search.barcode" placeholder="Search Barcode"
+                                        @keyup.native.enter="loadAsyncData"/>
                                 </b-field>
                             </div>
+
                             <div class="column">
                                 <b-field label="Serial" label-position="on-border">
                                     <b-input type="text" expanded
-                                             v-model="search.serial" placeholder="Search Serial"
-                                             @keyup.native.enter="loadAsyncData"/>
-                                    <p class="control">
-                                        <b-tooltip label="Search" type="is-success">
-                                            <b-button type="is-primary" icon-right="account-filter" @click="loadAsyncData"/>
-                                        </b-tooltip>
-                                    </p>
+                                        v-model="search.serial" placeholder="Search Serial"
+                                        @keyup.native.enter="loadAsyncData"/>
                                 </b-field>
                             </div>
                         </div>
+
+                        <div class="buttons">
+                            <b-button type="is-primary" 
+                                icon-right="magnify"
+                                label="Search"
+                                @click="loadAsyncData"/>
+
+                            <b-button type="is-info"
+                                class="is-outlined" 
+                                icon-right="printer"
+                                label="Print Preview"
+                                @click="printPreview"/>
+                        </div>
+
+                        <hr>
 
                         <b-table
                             :data="data"
@@ -92,6 +102,9 @@
                             <b-table-column field="sales" label="Sales" v-slot="props">
                                 {{ props.row.total_sales | formatToCurrency }}
                             </b-table-column>
+                            <b-table-column field="customer" label="Customer" v-slot="props">
+                                {{ props.row.customer }}
+                            </b-table-column>
 
                             <b-table-column field="sys_user" label="User" v-slot="props">
                                 {{ props.row.user.lname }}, {{ props.row.user.fname }}
@@ -108,27 +121,35 @@
                                 </div>
                             </b-table-column> -->
 
-
                             <template slot="detail" slot-scope="props">
+
                                 <table class="is-fullwidth">
                                     <tr>
                                         <th>Item Name</th>
                                         <th>Quantity</th>
                                         <th>Price</th>
+                                        <th>Remarks</th>
                                     </tr>
                                     <tr v-for="item in props.row.sales_details" :key="item.sales_detail_id">
-                                        <td>{{ item.item_name }}</td>
+                                        <td>{{ item.item_name }}
+                                        (   
+                                            <span v-for="serial in item.serials" :key="serial.sales_item_serial_id">
+                                                {{ serial.serial}}, 
+                                            </span>
+                                        )</td>
                                         <td class="has-text-centered">{{ item.qty }}</td>
                                         <td class="has-text-centered">{{ item.price | formatToCurrency }}</td>
+                                        <td class="has-text-centered text-container">{{ item.remarks }}</td>
                                     </tr>
                                 </table>
+
+                                
                             </template>
                             
                         </b-table>
 
-                        <div class="buttons mt-3">
-                            <b-button tag="a" href="/stock-in/create" icon-right="account-arrow-up-outline" class="is-success">NEW</b-button>
-                        </div>
+                        <hr>
+
                     </div>
                 </div><!--col -->
             </div><!-- cols -->
@@ -157,6 +178,8 @@ export default{
                 item_name: '',
                 barcode: '',
                 serial: '',
+                start_date: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+                end_date: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)
             },
 
             isModalCreate: false,
@@ -177,7 +200,10 @@ export default{
         loadAsyncData() {
             const params = [
                 `sort_by=${this.sortField}.${this.sortOrder}`,
+                `start=${this.$formatDate(this.search.start_date)}`,
+                `end=${this.$formatDate(this.search.end_date)}`,
                 `itemname=${this.search.item_name}`,
+                `serial=${this.search.serial}`,
                 `perpage=${this.perPage}`,
                 `page=${this.page}`
             ].join('&')
@@ -253,6 +279,10 @@ export default{
             });
         },
 
+        printPreview(){
+
+        },
+
         clearFields(){
             this.fields = {
                 item_id : 0,
@@ -276,7 +306,12 @@ export default{
 </script>
 
 
-<style>
-
+<style scoped>
+    .text-container {
+        max-width: 200px; /* Adjust the maximum width as needed */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        }
 
 </style>

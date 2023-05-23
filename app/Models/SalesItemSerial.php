@@ -17,4 +17,10 @@ class SalesItemSerial extends Model
     ];
 
 
+    public function sales_details()
+    {
+        return $this->belongsTo(SalesDetail::class, 'sales_detail_id', 'sales_detail_id');
+    }
+
+
 }
