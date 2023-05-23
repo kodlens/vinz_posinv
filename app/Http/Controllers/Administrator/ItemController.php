@@ -30,8 +30,7 @@ class ItemController extends Controller
 
         $data = Item::where('item_name', 'like', '%' . $req->itemname . '%')
             ->where('barcode', 'like', '%'. $req->barcode . '%')
-            ->where('serial', 'like', '%'. $req->serial . '%')
-            ->select('items.item_id','items.barcode', 'items.serial', 'items.brand', 'items.model', 'items.item_name',
+            ->select('items.item_id','items.barcode', 'items.brand', 'items.model', 'items.item_name',
                 DB::raw('(select qty from inventories where inventories.item_id = items.item_id limit 1) as stock_qty'),
                 DB::raw('(select price from stock_ins where stock_ins.item_id = items.item_id order by stock_in_date desc limit 1) as price'),
                 DB::raw('(select srp from stock_ins where stock_ins.item_id = items.item_id order by stock_in_date desc limit 1) as srp'),
@@ -46,7 +45,6 @@ class ItemController extends Controller
 
         $data = Item::where('item_name', 'like', '%' . $req->itemname . '%')
             ->where('barcode', 'like', '%'. $req->barcode . '%')
-            ->where('serial', 'like', '%'. $req->serial . '%')
             ->orderBy($sort[0], $sort[1])
             ->paginate($req->perpage);
 
@@ -68,7 +66,6 @@ class ItemController extends Controller
 
         $item = Item::create([
             'barcode' => strtoupper($req->barcode),
-            'serial' => strtoupper($req->serial),
             'brand' => strtoupper($req->brand),
             'model' => strtoupper($req->model),
             'item_name' => strtoupper($req->item_name),
@@ -91,7 +88,6 @@ class ItemController extends Controller
 
         $data = Item::find($id);
         $data->barcode = strtoupper($req->barcode);
-        $data->serial = strtoupper($req->serial);
         $data->brand = strtoupper($req->brand);
         $data->model = strtoupper($req->model);
         $data->item_name = strtoupper($req->item_name);

@@ -2,7 +2,7 @@
     <div>
         <div class="section">
             <div class="columns is-centered">
-                <div class="column is-10-desktop is-8-tablet">
+                <div class="column is-8-desktop is-10-tablet">
                     <div class="box">
 
                         <div class="is-flex is-justify-content-center mb-2" style="font-size: 20px; font-weight: bold;">LIST OF ITEM</div>
@@ -36,9 +36,7 @@
                                     </p>
                                 </b-field>
                             </div>
-                        </div>
 
-                        <div class="columns">
                             <div class="column">
                                 <b-field label="Barcode" label-position="on-border">
                                     <b-input type="text" expanded
@@ -51,19 +49,11 @@
                                     </p>
                                 </b-field>
                             </div>
-                            <div class="column">
-                                <b-field label="Serial" label-position="on-border">
-                                    <b-input type="text" expanded
-                                             v-model="search.serial" placeholder="Search Serial"
-                                             @keyup.native.enter="loadAsyncData"/>
-                                    <p class="control">
-                                        <b-tooltip label="Search" type="is-success">
-                                            <b-button type="is-primary" icon-right="account-filter" @click="loadAsyncData"/>
-                                        </b-tooltip>
-                                    </p>
-                                </b-field>
-                            </div>
+
+                            
                         </div>
+
+                        <hr>
 
                         <b-table
                             :data="data"
@@ -89,10 +79,6 @@
                                 {{ props.row.barcode }}
                             </b-table-column>
 
-                            <b-table-column field="serial" label="Serial" v-slot="props">
-                                {{ props.row.serial }}
-                            </b-table-column>
-
                             <b-table-column field="model" label="Model" v-slot="props">
                                 {{ props.row.model }}
                             </b-table-column>
@@ -116,6 +102,8 @@
                                 </div>
                             </b-table-column>
                         </b-table>
+
+                        <hr>
 
                         <div class="buttons mt-3">
                             <b-button @click="openModal" icon-right="account-arrow-up-outline" class="is-success">NEW</b-button>
@@ -155,15 +143,6 @@
                                              :message="this.errors.barcode ? this.errors.barcode[0] : ''">
                                         <b-input v-model="fields.barcode"
                                                  placeholder="Barcode">
-                                        </b-input>
-                                    </b-field>
-                                </div>
-                                <div class="column">
-                                    <b-field label="Serial" label-position="on-border"
-                                             :type="this.errors.serial ? 'is-danger':''"
-                                             :message="this.errors.serial ? this.errors.serial[0] : ''">
-                                        <b-input v-model="fields.serial"
-                                                 placeholder="Serial">
                                         </b-input>
                                     </b-field>
                                 </div>
@@ -238,14 +217,12 @@ export default{
             search: {
                 itemname: '',
                 barcode: '',
-                serial: '',
             },
 
             isModalCreate: false,
 
             fields: {
                 barcode : '',
-                serial: '',
                 model: '',
                 brand: '',
                 item_name: '',
@@ -273,8 +250,6 @@ export default{
                 `sort_by=${this.sortField}.${this.sortOrder}`,
                 `itemname=${this.search.itemname}`,
                 `barcode=${this.search.barcode}`,
-                `serial=${this.search.serial}`,
-                `perpage=${this.perPage}`,
                 `page=${this.page}`
             ].join('&')
 
@@ -402,7 +377,6 @@ export default{
         clearFields(){
             this.fields = {
                 barcode : '',
-                serial: '',
                 model: '',
                 brand: '',
                 item_name: '',

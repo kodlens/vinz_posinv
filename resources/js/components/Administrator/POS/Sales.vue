@@ -41,6 +41,13 @@
                                         @keyup.native.enter="loadAsyncData"/>
                                 </b-field>
                             </div>
+                            <div class="column">
+                                <b-field label="Customer Name" expanded label-position="on-border">
+                                    <b-input type="text" expanded
+                                        v-model="search.customer" placeholder="Search Customer"
+                                        @keyup.native.enter="loadAsyncData"/>
+                                </b-field>
+                            </div>
                         </div>
 
                         <div class="columns">
@@ -179,7 +186,8 @@ export default{
                 barcode: '',
                 serial: '',
                 start_date: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
-                end_date: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)
+                end_date: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+                customer: '',
             },
 
             isModalCreate: false,
@@ -203,6 +211,7 @@ export default{
                 `start=${this.$formatDate(this.search.start_date)}`,
                 `end=${this.$formatDate(this.search.end_date)}`,
                 `itemname=${this.search.item_name}`,
+                `customer=${this.search.customer}`,
                 `serial=${this.search.serial}`,
                 `perpage=${this.perPage}`,
                 `page=${this.page}`

@@ -24,6 +24,7 @@ class SalesController extends Controller
 
         $data = Sales::with(['sales_details.serials', 'user'])
             ->whereBetween('sales_date', [$req->start . ' 00:00:00', $req->end . ' 23:59:59'])
+            ->where('customer', 'like', '%' . $req->customer . '%')
             ->whereHas('sales_details', function($q) use ($req){
                 $q->where('item_name', 'like', '%' . $req->itemname . '%');
             })

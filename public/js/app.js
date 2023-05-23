@@ -8844,27 +8844,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -8879,13 +8858,11 @@ __webpack_require__.r(__webpack_exports__);
       global_id: 0,
       search: {
         itemname: '',
-        barcode: '',
-        serial: ''
+        barcode: ''
       },
       isModalCreate: false,
       fields: {
         barcode: '',
-        serial: '',
         model: '',
         brand: '',
         item_name: '',
@@ -8906,7 +8883,7 @@ __webpack_require__.r(__webpack_exports__);
     loadAsyncData: function loadAsyncData() {
       var _this = this;
 
-      var params = ["sort_by=".concat(this.sortField, ".").concat(this.sortOrder), "itemname=".concat(this.search.itemname), "barcode=".concat(this.search.barcode), "serial=".concat(this.search.serial), "perpage=".concat(this.perPage), "page=".concat(this.page)].join('&');
+      var params = ["sort_by=".concat(this.sortField, ".").concat(this.sortOrder), "itemname=".concat(this.search.itemname), "barcode=".concat(this.search.barcode), "page=".concat(this.page)].join('&');
       this.loading = true;
       axios.get("/get-items?".concat(params)).then(function (_ref) {
         var data = _ref.data;
@@ -9034,7 +9011,6 @@ __webpack_require__.r(__webpack_exports__);
     clearFields: function clearFields() {
       this.fields = {
         barcode: '',
-        serial: '',
         model: '',
         brand: '',
         item_name: '',
@@ -9562,6 +9538,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -9578,7 +9561,8 @@ __webpack_require__.r(__webpack_exports__);
         barcode: '',
         serial: '',
         start_date: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
-        end_date: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)
+        end_date: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+        customer: ''
       },
       isModalCreate: false,
       btnClass: {
@@ -9595,7 +9579,7 @@ __webpack_require__.r(__webpack_exports__);
     loadAsyncData: function loadAsyncData() {
       var _this = this;
 
-      var params = ["sort_by=".concat(this.sortField, ".").concat(this.sortOrder), "start=".concat(this.$formatDate(this.search.start_date)), "end=".concat(this.$formatDate(this.search.end_date)), "itemname=".concat(this.search.item_name), "serial=".concat(this.search.serial), "perpage=".concat(this.perPage), "page=".concat(this.page)].join('&');
+      var params = ["sort_by=".concat(this.sortField, ".").concat(this.sortOrder), "start=".concat(this.$formatDate(this.search.start_date)), "end=".concat(this.$formatDate(this.search.end_date)), "itemname=".concat(this.search.item_name), "customer=".concat(this.search.customer), "serial=".concat(this.search.serial), "perpage=".concat(this.perPage), "page=".concat(this.page)].join('&');
       this.loading = true;
       axios.get("/get-sales?".concat(params)).then(function (_ref) {
         var data = _ref.data;
@@ -33641,7 +33625,7 @@ var render = function () {
     [
       _c("div", { staticClass: "section" }, [
         _c("div", { staticClass: "columns is-centered" }, [
-          _c("div", { staticClass: "column is-10-desktop is-8-tablet" }, [
+          _c("div", { staticClass: "column is-8-desktop is-10-tablet" }, [
             _c(
               "div",
               { staticClass: "box" },
@@ -33807,9 +33791,7 @@ var render = function () {
                     ],
                     1
                   ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "columns" }, [
+                  _vm._v(" "),
                   _c(
                     "div",
                     { staticClass: "column" },
@@ -33887,85 +33869,9 @@ var render = function () {
                     ],
                     1
                   ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "column" },
-                    [
-                      _c(
-                        "b-field",
-                        {
-                          attrs: {
-                            label: "Serial",
-                            "label-position": "on-border",
-                          },
-                        },
-                        [
-                          _c("b-input", {
-                            attrs: {
-                              type: "text",
-                              expanded: "",
-                              placeholder: "Search Serial",
-                            },
-                            nativeOn: {
-                              keyup: function ($event) {
-                                if (
-                                  !$event.type.indexOf("key") &&
-                                  _vm._k(
-                                    $event.keyCode,
-                                    "enter",
-                                    13,
-                                    $event.key,
-                                    "Enter"
-                                  )
-                                ) {
-                                  return null
-                                }
-                                return _vm.loadAsyncData.apply(null, arguments)
-                              },
-                            },
-                            model: {
-                              value: _vm.search.serial,
-                              callback: function ($$v) {
-                                _vm.$set(_vm.search, "serial", $$v)
-                              },
-                              expression: "search.serial",
-                            },
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            { staticClass: "control" },
-                            [
-                              _c(
-                                "b-tooltip",
-                                {
-                                  attrs: {
-                                    label: "Search",
-                                    type: "is-success",
-                                  },
-                                },
-                                [
-                                  _c("b-button", {
-                                    attrs: {
-                                      type: "is-primary",
-                                      "icon-right": "account-filter",
-                                    },
-                                    on: { click: _vm.loadAsyncData },
-                                  }),
-                                ],
-                                1
-                              ),
-                            ],
-                            1
-                          ),
-                        ],
-                        1
-                      ),
-                    ],
-                    1
-                  ),
                 ]),
+                _vm._v(" "),
+                _c("hr"),
                 _vm._v(" "),
                 _c(
                   "b-table",
@@ -34015,24 +33921,6 @@ var render = function () {
                               _vm._v(
                                 "\n                            " +
                                   _vm._s(props.row.barcode) +
-                                  "\n                        "
-                              ),
-                            ]
-                          },
-                        },
-                      ]),
-                    }),
-                    _vm._v(" "),
-                    _c("b-table-column", {
-                      attrs: { field: "serial", label: "Serial" },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "default",
-                          fn: function (props) {
-                            return [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(props.row.serial) +
                                   "\n                        "
                               ),
                             ]
@@ -34170,6 +34058,8 @@ var render = function () {
                   1
                 ),
                 _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "buttons mt-3" },
@@ -34269,40 +34159,6 @@ var render = function () {
                                     _vm.$set(_vm.fields, "barcode", $$v)
                                   },
                                   expression: "fields.barcode",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "column" },
-                        [
-                          _c(
-                            "b-field",
-                            {
-                              attrs: {
-                                label: "Serial",
-                                "label-position": "on-border",
-                                type: this.errors.serial ? "is-danger" : "",
-                                message: this.errors.serial
-                                  ? this.errors.serial[0]
-                                  : "",
-                              },
-                            },
-                            [
-                              _c("b-input", {
-                                attrs: { placeholder: "Serial" },
-                                model: {
-                                  value: _vm.fields.serial,
-                                  callback: function ($$v) {
-                                    _vm.$set(_vm.fields, "serial", $$v)
-                                  },
-                                  expression: "fields.serial",
                                 },
                               }),
                             ],
@@ -35230,6 +35086,58 @@ var render = function () {
                                 _vm.$set(_vm.search, "item_name", $$v)
                               },
                               expression: "search.item_name",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "column" },
+                    [
+                      _c(
+                        "b-field",
+                        {
+                          attrs: {
+                            label: "Customer Name",
+                            expanded: "",
+                            "label-position": "on-border",
+                          },
+                        },
+                        [
+                          _c("b-input", {
+                            attrs: {
+                              type: "text",
+                              expanded: "",
+                              placeholder: "Search Customer",
+                            },
+                            nativeOn: {
+                              keyup: function ($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                return _vm.loadAsyncData.apply(null, arguments)
+                              },
+                            },
+                            model: {
+                              value: _vm.search.customer,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.search, "customer", $$v)
+                              },
+                              expression: "search.customer",
                             },
                           }),
                         ],

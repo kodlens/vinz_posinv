@@ -13,7 +13,8 @@ class Item extends Model
     protected $table = 'items';
     protected $primaryKey = 'item_id';
     protected $fillable = [
-        'barcode', 'serial', 'brand', 'model', 'item_name', 'item_description',
+        'barcode',
+        'brand', 'model', 'item_name', 'item_description',
     ];
 
 
