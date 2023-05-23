@@ -91,3 +91,15 @@ Route::get('/applogout', function(Request $req){
     $req->session()->invalidate();
     $req->session()->regenerateToken();
 });
+
+
+use Illuminate\Http\Response;
+Route::get('/test', function(){
+   
+    $minutes = 1;
+
+    $response = new Response('Hello, world!');
+    $response->cookie('cookie_name', 'cookie_value', $minutes);
+
+    return $response;
+});
