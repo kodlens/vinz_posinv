@@ -21,19 +21,21 @@ class SalesController extends Controller
         $sort = explode('.', $req->sort_by);
 
        // $serial = '';
-
+        //return $req;
         $data = Sales::with(['sales_details.serials', 'user'])
             ->whereBetween('sales_date', [$req->start . ' 00:00:00', $req->end . ' 23:59:59'])
             ->where('customer', 'like', '%' . $req->customer . '%')
             ->whereHas('sales_details', function($q) use ($req){
                 $q->where('item_name', 'like', '%' . $req->itemname . '%');
-            })
-            ->whereHas('sales_details.serials', function($q) use ($req){
-                $q->where('serial', 'like', '%' . $req->serial . '%');
-            })
-            ->orderBy($sort[0], $sort[1])
-            ->paginate($req->perpage);
+            });
 
-        return $data;
+            if($req->serial != '' || $req->serial != null){
+                $data->whereHas('sales_details.serials', function($q) use ($req){
+                    $q->where('serial', 'like', '%' . $req->serial . '%');
+                });
+            }
+
+        return $data ->orderBy($sort[0], $sort[1])
+            ->paginate($req->perpage);;
     }
 }

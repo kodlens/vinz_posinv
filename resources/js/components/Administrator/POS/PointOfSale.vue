@@ -49,6 +49,7 @@
                                             min="0"
                                             :controls="false"
                                             expanded
+                                            step="0.01"
                                             placeholder="Quantity"
                                             controls-position="compact"
                                             ></b-numberinput>

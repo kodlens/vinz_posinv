@@ -9255,6 +9255,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['propId', 'propData'],
   data: function data() {
@@ -34669,6 +34670,7 @@ var render = function () {
                                         min: "0",
                                         controls: false,
                                         expanded: "",
+                                        step: "0.01",
                                         placeholder: "Quantity",
                                         "controls-position": "compact",
                                       },

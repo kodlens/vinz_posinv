@@ -29,7 +29,7 @@ class PointOfSaleController extends Controller
             'orders.*' => ['required'],
             'orders.*.item_id' => ['required'],
             'orders.*.price' => ['required'],
-            'orders.*.qty' => ['size:1'],
+            //'orders.*.qty' => ['size:'],
         ],[
             'orders.*.item_id.required' => 'Please select item',
             'orders.*.price.required' => 'Please fill out the price',
