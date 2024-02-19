@@ -5727,3 +5727,30 @@ Did you mean one of these?
 #43 C:\\Users\\wayne\\Desktop\\Github Repo\\vinz_posinv\\server.php(21): require_once('C:\\\\Users\\\\wayne\\\\...')
 #44 {main}
 "} 
+[2024-02-19 09:26:41] local.ERROR: Command "migrate:refersh" is not defined.
+
+Did you mean one of these?
+    migrate
+    migrate:fresh
+    migrate:install
+    migrate:refresh
+    migrate:reset
+    migrate:rollback
+    migrate:status {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"migrate:refersh\" is not defined.
+
+Did you mean one of these?
+    migrate
+    migrate:fresh
+    migrate:install
+    migrate:refresh
+    migrate:reset
+    migrate:rollback
+    migrate:status at C:\\Users\\etien\\OneDrive\\Desktop\\Github Proj\\vinz_posinv\\vendor\\symfony\\console\\Application.php:682)
+[stacktrace]
+#0 C:\\Users\\etien\\OneDrive\\Desktop\\Github Proj\\vinz_posinv\\vendor\\symfony\\console\\Application.php(255): Symfony\\Component\\Console\\Application->find('migrate:refersh')
+#1 C:\\Users\\etien\\OneDrive\\Desktop\\Github Proj\\vinz_posinv\\vendor\\symfony\\console\\Application.php(167): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 C:\\Users\\etien\\OneDrive\\Desktop\\Github Proj\\vinz_posinv\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(94): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\Users\\etien\\OneDrive\\Desktop\\Github Proj\\vinz_posinv\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(129): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 C:\\Users\\etien\\OneDrive\\Desktop\\Github Proj\\vinz_posinv\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
