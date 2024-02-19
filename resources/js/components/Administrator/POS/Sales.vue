@@ -136,6 +136,7 @@
                                         <th>Quantity</th>
                                         <th>Price</th>
                                         <th>Remarks</th>
+                                        <th>Serial</th>
                                     </tr>
                                     <tr v-for="item in props.row.sales_details" :key="item.sales_detail_id">
                                         <td>{{ item.item_name }}
@@ -147,6 +148,10 @@
                                         <td class="has-text-centered">{{ item.qty }}</td>
                                         <td class="has-text-centered">{{ item.price | formatToCurrency }}</td>
                                         <td class="has-text-centered text-container">{{ item.remarks }}</td>
+                                        <td class="has-text-centered">
+                                            <span v-for="(item, index) in item.serials" :key="`serial${index}`">{{ item.serial }}, </span>
+                                        </td>
+
                                     </tr>
                                 </table>
 

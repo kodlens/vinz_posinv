@@ -9545,6 +9545,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -35316,6 +35321,8 @@ var render = function () {
                                   _c("th", [_vm._v("Price")]),
                                   _vm._v(" "),
                                   _c("th", [_vm._v("Remarks")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Serial")]),
                                 ]),
                                 _vm._v(" "),
                                 _vm._l(
@@ -35384,6 +35391,26 @@ var render = function () {
                                               "has-text-centered text-container",
                                           },
                                           [_vm._v(_vm._s(item.remarks))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "has-text-centered" },
+                                          _vm._l(
+                                            item.serials,
+                                            function (item, index) {
+                                              return _c(
+                                                "span",
+                                                { key: "serial" + index },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(item.serial) + ", "
+                                                  ),
+                                                ]
+                                              )
+                                            }
+                                          ),
+                                          0
                                         ),
                                       ]
                                     )
